@@ -8,7 +8,7 @@ updated: 2023-12-15
 
 You've come across **Forgetful Notes**—a [[./Digital Garden|digital garden]] of knowledge. Come in and make yourself comfortable.
 
-This site serves as a platform for my learning and creative endeavours. A space for thinking through, building upon, and coming back to. It is part of my effort to organize my own theories, concepts, and ideas in a more public setting.
+This website serves as a platform for my learning and creative endeavours. A space for thinking through, building upon, and coming back to. It is part of my effort to organize my own theories, concepts, and ideas in a more public setting.
 
 You will find within a wide range of topics, expanding and exploring ideas across multiple disciplines. In a way, you could say the [[./Scope of Work|scope of work]] for the website is not only allowed to, but expected to grow. Forgetful Notes embraces the inherent [[./Rhizomatic Learning|rhizomatic learning]] and web-like nature of our thinking. It is a living document designed for an audience of one, myself.
 
