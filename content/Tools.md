@@ -1,15 +1,15 @@
 ---
-title: Tools I Use
-tags:
-  - list
+title: Tools
+updated: 2024-02-08
+alias:
+  - Uses
 compartir: true
-updated: 2023-12-04
 ---
 ---
-title: Tools I Use
-tags: [list]
+title: Tools
+updated: 2024-02-08
+alias: ["Uses"]
 compartir: true
-updated: 2023-12-04
 ---
 
 A non-comprehensive list of the hardware and software I use on a day-to-day basis.
@@ -22,9 +22,13 @@ A non-comprehensive list of the hardware and software I use on a day-to-day basi
 
 ## Software
 
+### Daily Drivers
+
 - [Obsidian](https://obsidian.md/) – Markdown Text Editor
 - [Visual Studio Code](https://code.visualstudio.com/) – Code Editor
 - [Raindrop](https://raindrop.io/) – Bookmarks Manager
+- [Syncthing](https://github.com/syncthing/syncthing) – Open source continuous file synchronization.
+- [Espanso](https://github.com/espanso/espanso) – Cross-platform text expander written in Rust.
 
 ### Notable Visual Studio Code Extensions
 
@@ -54,4 +58,5 @@ A non-comprehensive list of the hardware and software I use on a day-to-day basi
 - [QuickLook](https://github.com/QL-Win/QuickLook) – Bring macOS "Quick Look" feature to Windows.
 - [PowerToys](https://github.com/microsoft/PowerToys) – Windows system utilities to maximize productivity.
 - [EarTrumpet](https://github.com/File-New-Project/EarTrumpet) – Volume control, multi-channel discovery, default playback device management.
-- [PDFsam](https://github.com/torakiki/pdfsam) – PDFsam, a desktop application to split, merge, mix, rotate PDF files and extract pages.
+- [PDFsam](https://github.com/torakiki/pdfsam) – Desktop application to split, merge, mix, rotate PDF files and extract pages.
+- [TaskbarX](https://github.com/ChrisAnd1998/TaskbarX) – Center Windows taskbar icons with a variety of animations and options.
