@@ -1,6 +1,6 @@
 export default class DepGraph<T> {
   // node: incoming and outgoing edges
-  _graph = new Map<T, {incoming: Set<T>; outgoing: Set<T>}>()
+  _graph = new Map<T, { incoming: Set<T>; outgoing: Set<T> }>()
 
   constructor() {
     this._graph = new Map()
@@ -35,7 +35,7 @@ export default class DepGraph<T> {
 
   addNode(node: T): void {
     if (!this._graph.has(node)) {
-      this._graph.set(node, {incoming: new Set(), outgoing: new Set()})
+      this._graph.set(node, { incoming: new Set(), outgoing: new Set() })
     }
   }
 
@@ -97,7 +97,7 @@ export default class DepGraph<T> {
   }
 
   forEachEdge(callback: (edge: [T, T]) => void): void {
-    for (const [source, {outgoing}] of this._graph.entries()) {
+    for (const [source, { outgoing }] of this._graph.entries()) {
       for (const target of outgoing) {
         callback([source, target])
       }

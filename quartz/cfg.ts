@@ -1,8 +1,8 @@
-import {ValidDateType} from "./components/Date"
-import {QuartzComponent} from "./components/types"
-import {ValidLocale} from "./i18n"
-import {PluginTypes} from "./plugins/types"
-import {Theme} from "./util/theme"
+import { ValidDateType } from "./components/Date"
+import { QuartzComponent } from "./components/types"
+import { ValidLocale } from "./i18n"
+import { PluginTypes } from "./plugins/types"
+import { Theme } from "./util/theme"
 
 export type Analytics =
   | null
@@ -84,7 +84,4 @@ export interface FullPageLayout {
 }
 
 export type PageLayout = Pick<FullPageLayout, "beforeBody" | "left" | "right">
-export type SharedLayout = Pick<
-  FullPageLayout,
-  "head" | "header" | "footer" | "afterBody"
->
+export type SharedLayout = Pick<FullPageLayout, "head" | "header" | "footer" | "afterBody">

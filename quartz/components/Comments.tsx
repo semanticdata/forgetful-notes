@@ -1,9 +1,5 @@
-import {
-  QuartzComponent,
-  QuartzComponentConstructor,
-  QuartzComponentProps,
-} from "./types"
-import {classNames} from "../util/lang"
+import { QuartzComponent, QuartzComponentConstructor, QuartzComponentProps } from "./types"
+import { classNames } from "../util/lang"
 // @ts-ignore
 import script from "./scripts/comments.inline"
 
@@ -26,10 +22,7 @@ function boolToStringBool(b: boolean): string {
 }
 
 export default ((opts: Options) => {
-  const Comments: QuartzComponent = ({
-    displayClass,
-    cfg,
-  }: QuartzComponentProps) => {
+  const Comments: QuartzComponent = ({ displayClass, cfg }: QuartzComponentProps) => {
     return (
       <div
         class={classNames(displayClass, "giscus")}
@@ -39,10 +32,9 @@ export default ((opts: Options) => {
         data-category-id={opts.options.categoryId}
         data-mapping={opts.options.mapping ?? "url"}
         data-strict={boolToStringBool(opts.options.strict ?? true)}
-        data-reactions-enabled={boolToStringBool(
-          opts.options.reactionsEnabled ?? true,
-        )}
-        data-input-position={opts.options.inputPosition ?? "bottom"}></div>
+        data-reactions-enabled={boolToStringBool(opts.options.reactionsEnabled ?? true)}
+        data-input-position={opts.options.inputPosition ?? "bottom"}
+      ></div>
     )
   }
 

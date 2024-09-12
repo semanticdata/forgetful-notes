@@ -1,12 +1,12 @@
-import {PerfTimer} from "../util/perf"
-import {getStaticResourcesFromPlugins} from "../plugins"
-import {ProcessedContent} from "../plugins/vfile"
-import {QuartzLogger} from "../util/log"
-import {trace} from "../util/trace"
-import {BuildCtx} from "../util/ctx"
+import { PerfTimer } from "../util/perf"
+import { getStaticResourcesFromPlugins } from "../plugins"
+import { ProcessedContent } from "../plugins/vfile"
+import { QuartzLogger } from "../util/log"
+import { trace } from "../util/trace"
+import { BuildCtx } from "../util/ctx"
 
 export async function emitContent(ctx: BuildCtx, content: ProcessedContent[]) {
-  const {argv, cfg} = ctx
+  const { argv, cfg } = ctx
   const perf = new PerfTimer()
   const log = new QuartzLogger(ctx.argv.verbose)
 
@@ -29,7 +29,5 @@ export async function emitContent(ctx: BuildCtx, content: ProcessedContent[]) {
     }
   }
 
-  log.end(
-    `Emitted ${emittedFiles} files to \`${argv.output}\` in ${perf.timeSince()}`,
-  )
+  log.end(`Emitted ${emittedFiles} files to \`${argv.output}\` in ${perf.timeSince()}`)
 }

@@ -1,13 +1,30 @@
-import type {ContentDetails} from "../../plugins/emitters/contentIndex"
-import * as d3 from "d3"
-import {registerEscapeHandler, removeAllChildren} from "./util"
+import type { ContentDetails } from "../../plugins/emitters/contentIndex"
 import {
-  FullSlug,
-  SimpleSlug,
-  getFullSlug,
-  resolveRelative,
-  simplifySlug,
-} from "../../util/path"
+  SimulationNodeDatum,
+  SimulationLinkDatum,
+  Simulation,
+  forceSimulation,
+  forceManyBody,
+  forceCenter,
+  forceLink,
+  forceCollide,
+  zoomIdentity,
+  select,
+  drag,
+  zoom,
+} from "d3"
+import { Text, Graphics, Application, Container, Circle } from "pixi.js"
+import { Group as TweenGroup, Tween as Tweened } from "@tweenjs/tween.js"
+import { registerEscapeHandler, removeAllChildren } from "./util"
+import { FullSlug, SimpleSlug, getFullSlug, resolveRelative, simplifySlug } from "../../util/path"
+import { D3Config } from "../Graph"
+
+type GraphicsInfo = {
+  color: string
+  gfx: Graphics
+  alpha: number
+  active: boolean
+}
 
 type NodeData = {
   id: SimpleSlug
@@ -88,7 +105,7 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
 
     for (const dest of outgoing) {
       if (validLinks.has(dest)) {
-        links.push({source: source, target: dest})
+        links.push({ source: source, target: dest })
       }
     }
 
@@ -100,7 +117,7 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
       tags.push(...localTags.filter((tag) => !tags.includes(tag)))
 
       for (const tag of localTags) {
-        links.push({source: source, target: tag})
+        links.push({ source: source, target: tag })
       }
     }
   }
@@ -118,10 +135,7 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
         neighbourhood.add(cur)
         const outgoing = links.filter((l) => l.source === cur)
         const incoming = links.filter((l) => l.target === cur)
-        wl.push(
-          ...outgoing.map((l) => l.target),
-          ...incoming.map((l) => l.source),
-        )
+        wl.push(...outgoing.map((l) => l.target), ...incoming.map((l) => l.source))
       }
     }
   } else {
@@ -129,20 +143,22 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
     if (showTags) tags.forEach((tag) => neighbourhood.add(tag))
   }
 
-  const graphData: {nodes: NodeData[]; links: LinkData[]} = {
-    nodes: [...neighbourhood].map((url) => {
-      const text = url.startsWith("tags/")
-        ? "#" + url.substring(5)
-        : data.get(url)?.title ?? url
-      return {
-        id: url,
-        text: text,
-        tags: data.get(url)?.tags ?? [],
-      }
-    }),
-    links: links.filter(
-      (l) => neighbourhood.has(l.source) && neighbourhood.has(l.target),
-    ),
+  const nodes = [...neighbourhood].map((url) => {
+    const text = url.startsWith("tags/") ? "#" + url.substring(5) : (data.get(url)?.title ?? url)
+    return {
+      id: url,
+      text,
+      tags: data.get(url)?.tags ?? [],
+    }
+  })
+  const graphData: { nodes: NodeData[]; links: LinkData[] } = {
+    nodes,
+    links: links
+      .filter((l) => neighbourhood.has(l.source) && neighbourhood.has(l.target))
+      .map((l) => ({
+        source: nodes.find((n) => n.id === l.source)!,
+        target: nodes.find((n) => n.id === l.target)!,
+      })),
   }
 
   // we virtualize the simulation and use pixi to actually render it
@@ -155,35 +171,24 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
   const width = graph.offsetWidth
   const height = Math.max(graph.offsetHeight, 250)
 
-  const svg = d3
-    .select<HTMLElement, NodeData>("#" + container)
-    .append("svg")
-    .attr("width", width)
-    .attr("height", height)
-    .attr("viewBox", [
-      -width / 2 / scale,
-      -height / 2 / scale,
-      width / scale,
-      height / scale,
-    ])
-
-  // draw links between nodes
-  const link = svg
-    .append("g")
-    .selectAll("line")
-    .data(graphData.links)
-    .join("line")
-    .attr("class", "link")
-    .attr("stroke", "var(--lightgray)")
-    .attr("stroke-width", 1)
-
-  // svg groups
-  const graphNode = svg
-    .append("g")
-    .selectAll("g")
-    .data(graphData.nodes)
-    .enter()
-    .append("g")
+  // precompute style prop strings as pixi doesn't support css variables
+  const cssVars = [
+    "--secondary",
+    "--tertiary",
+    "--gray",
+    "--light",
+    "--lightgray",
+    "--dark",
+    "--darkgray",
+    "--bodyFont",
+  ] as const
+  const computedStyleMap = cssVars.reduce(
+    (acc, key) => {
+      acc[key] = getComputedStyle(document.documentElement).getPropertyValue(key)
+      return acc
+    },
+    {} as Record<(typeof cssVars)[number], string>,
+  )
 
   // calculate color
   const color = (d: NodeData) => {
@@ -267,12 +272,37 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
     })
   }
 
-  function nodeRadius(d: NodeData) {
-    const numLinks = links.filter(
-      (l: any) => l.source.id === d.id || l.target.id === d.id,
-    ).length
-    return 2 + Math.sqrt(numLinks)
-  }
+  function renderLabels() {
+    tweens.get("label")?.stop()
+    const tweenGroup = new TweenGroup()
+
+    const defaultScale = 1 / scale
+    const activeScale = defaultScale * 1.1
+    for (const n of nodeRenderData) {
+      const nodeId = n.simulationData.id
+
+      if (hoveredNodeId === nodeId) {
+        tweenGroup.add(
+          new Tweened<Text>(n.label).to(
+            {
+              alpha: 1,
+              scale: { x: activeScale, y: activeScale },
+            },
+            100,
+          ),
+        )
+      } else {
+        tweenGroup.add(
+          new Tweened<Text>(n.label).to(
+            {
+              alpha: n.label.alpha,
+              scale: { x: defaultScale, y: defaultScale },
+            },
+            100,
+          ),
+        )
+      }
+    }
 
     tweenGroup.getAll().forEach((tw) => tw.start())
     tweens.set("label", {
@@ -281,101 +311,89 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
         tweenGroup.getAll().forEach((tw) => tw.stop())
       },
     })
-    .on("mouseover", function (_, d) {
-      const currentId = d.id
-      const linkNodes = d3
-        .selectAll(".link")
-        .filter(
-          (d: any) => d.source.id === currentId || d.target.id === currentId,
-        )
+  }
 
-      if (focusOnHover) {
-        // fade out non-neighbour nodes
-        connectedNodes = linkNodes
-          .data()
-          .flatMap((d: any) => [d.source.id, d.target.id])
+  function renderNodes() {
+    tweens.get("hover")?.stop()
 
-        d3.selectAll<HTMLElement, NodeData>(".link")
-          .transition()
-          .duration(200)
-          .style("opacity", 0.2)
-        d3.selectAll<HTMLElement, NodeData>(".node")
-          .filter((d) => !connectedNodes.includes(d.id))
-          .transition()
-          .duration(200)
-          .style("opacity", 0.2)
+    const tweenGroup = new TweenGroup()
+    for (const n of nodeRenderData) {
+      let alpha = 1
 
-        d3.selectAll<HTMLElement, NodeData>(".node")
-          .filter((d) => !connectedNodes.includes(d.id))
-          .nodes()
-          .map((it) => d3.select(it.parentNode as HTMLElement).select("text"))
-          .forEach((it) => {
-            let opacity = parseFloat(it.style("opacity"))
-            it.transition()
-              .duration(200)
-              .attr("opacityOld", opacity)
-              .style("opacity", Math.min(opacity, 0.2))
-          })
+      // if we are hovering over a node, we want to highlight the immediate neighbours
+      if (hoveredNodeId !== null && focusOnHover) {
+        alpha = n.active ? 1 : 0.2
       }
 
-      // highlight links
-      linkNodes
-        .transition()
-        .duration(200)
-        .attr("stroke", "var(--gray)")
-        .attr("stroke-width", 1)
+      tweenGroup.add(new Tweened<Graphics>(n.gfx, tweenGroup).to({ alpha }, 200))
+    }
 
-      const bigFont = fontSize * 1.5
-
-      // show text for self
-      const parent = this.parentNode as HTMLElement
-      d3.select<HTMLElement, NodeData>(parent)
-        .raise()
-        .select("text")
-        .transition()
-        .duration(200)
-        .attr("opacityOld", d3.select(parent).select("text").style("opacity"))
-        .style("opacity", 1)
-        .style("font-size", bigFont + "em")
+    tweenGroup.getAll().forEach((tw) => tw.start())
+    tweens.set("hover", {
+      update: tweenGroup.update.bind(tweenGroup),
+      stop() {
+        tweenGroup.getAll().forEach((tw) => tw.stop())
+      },
     })
-    .on("mouseleave", function (_, d) {
-      if (focusOnHover) {
-        d3.selectAll<HTMLElement, NodeData>(".link")
-          .transition()
-          .duration(200)
-          .style("opacity", 1)
-        d3.selectAll<HTMLElement, NodeData>(".node")
-          .transition()
-          .duration(200)
-          .style("opacity", 1)
+  }
 
-        d3.selectAll<HTMLElement, NodeData>(".node")
-          .filter((d) => !connectedNodes.includes(d.id))
-          .nodes()
-          .map((it) => d3.select(it.parentNode as HTMLElement).select("text"))
-          .forEach((it) =>
-            it
-              .transition()
-              .duration(200)
-              .style("opacity", it.attr("opacityOld")),
-          )
-      }
-      const currentId = d.id
-      const linkNodes = d3
-        .selectAll(".link")
-        .filter(
-          (d: any) => d.source.id === currentId || d.target.id === currentId,
-        )
+  function renderPixiFromD3() {
+    renderNodes()
+    renderLinks()
+    renderLabels()
+  }
 
-      linkNodes.transition().duration(200).attr("stroke", "var(--lightgray)")
+  tweens.forEach((tween) => tween.stop())
+  tweens.clear()
 
-      const parent = this.parentNode as HTMLElement
-      d3.select<HTMLElement, NodeData>(parent)
-        .select("text")
-        .transition()
-        .duration(200)
-        .style("opacity", d3.select(parent).select("text").attr("opacityOld"))
-        .style("font-size", fontSize + "em")
+  const app = new Application()
+  await app.init({
+    width,
+    height,
+    antialias: true,
+    autoStart: false,
+    autoDensity: true,
+    backgroundAlpha: 0,
+    preference: "webgpu",
+    resolution: window.devicePixelRatio,
+    eventMode: "static",
+  })
+  graph.appendChild(app.canvas)
+
+  const stage = app.stage
+  stage.interactive = false
+
+  const labelsContainer = new Container<Text>({ zIndex: 3 })
+  const nodesContainer = new Container<Graphics>({ zIndex: 2 })
+  const linkContainer = new Container<Graphics>({ zIndex: 1 })
+  stage.addChild(nodesContainer, labelsContainer, linkContainer)
+
+  for (const n of graphData.nodes) {
+    const nodeId = n.id
+
+    const label = new Text({
+      interactive: false,
+      eventMode: "none",
+      text: n.text,
+      alpha: 0,
+      anchor: { x: 0.5, y: 1.2 },
+      style: {
+        fontSize: fontSize * 15,
+        fill: computedStyleMap["--dark"],
+        fontFamily: computedStyleMap["--bodyFont"],
+      },
+      resolution: window.devicePixelRatio * 4,
+    })
+    label.scale.set(1 / scale)
+
+    let oldLabelOpacity = 0
+    const isTagNode = nodeId.startsWith("tags/")
+    const gfx = new Graphics({
+      interactive: true,
+      label: nodeId,
+      eventMode: "static",
+      hitArea: new Circle(0, 0, nodeRadius(n)),
+      cursor: "pointer",
     })
       .circle(0, 0, nodeRadius(n))
       .fill({ color: isTagNode ? computedStyleMap["--light"] : color(n) })
@@ -480,9 +498,12 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
           [width, height],
         ])
         .scaleExtent([0.25, 4])
-        .on("zoom", ({transform}) => {
-          link.attr("transform", transform)
-          node.attr("transform", transform)
+        .on("zoom", ({ transform }) => {
+          currentTransform = transform
+          stage.scale.set(transform.k, transform.k)
+          stage.position.set(transform.x, transform.y)
+
+          // zoom adjusts opacity of labels too
           const scale = transform.k * opacityScale
           let scaleOpacity = Math.max((scale - 1) / 3.75, 0)
           const activeNodes = nodeRenderData.filter((n) => n.active).flatMap((n) => n.label)
@@ -518,7 +539,7 @@ async function renderGraph(container: string, fullSlug: FullSlug) {
     tweens.forEach((t) => t.update(time))
     app.renderer.render(stage)
     requestAnimationFrame(animate)
-  // }
+  }
 
   const graphAnimationFrameHandle = requestAnimationFrame(animate)
   window.addCleanup(() => cancelAnimationFrame(graphAnimationFrameHandle))
@@ -573,7 +594,8 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
 
   const containerIcon = document.getElementById("global-graph-icon")
   containerIcon?.addEventListener("click", renderGlobalGraph)
-  window.addCleanup(() =>
-    containerIcon?.removeEventListener("click", renderGlobalGraph),
-  )
+  window.addCleanup(() => containerIcon?.removeEventListener("click", renderGlobalGraph))
+
+  document.addEventListener("keydown", shortcutHandler)
+  window.addCleanup(() => document.removeEventListener("keydown", shortcutHandler))
 })

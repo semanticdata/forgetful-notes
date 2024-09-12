@@ -42,8 +42,20 @@ ul,
 .math {
   color: var(--darkgray);
   fill: var(--darkgray);
-  overflow-wrap: anywhere;
   hyphens: auto;
+}
+
+p,
+ul,
+text,
+a,
+li,
+ol,
+ul,
+.katex,
+.math {
+  overflow-wrap: anywhere;
+  /* tr and td removed from list of selectors for overflow-wrap, allowing them to use default 'normal' property value */
 }
 
 .math {
@@ -52,8 +64,12 @@ ul,
   }
 }
 
+strong {
+  font-weight: $semiBoldWeight;
+}
+
 a {
-  font-weight: $boldWeight;
+  font-weight: $semiBoldWeight;
   text-decoration: none;
   transition: color 0.2s ease;
   color: var(--secondary);
@@ -73,6 +89,11 @@ a {
       background-color: none;
       border-radius: 0;
       padding: 0;
+    }
+    &.tag-link {
+      &::before {
+        content: "#";
+      }
     }
   }
 
@@ -267,11 +288,9 @@ thead {
   font-weight: revert;
   margin-bottom: 0;
 
-  article > & > a {
+  article > & > a[role="anchor"] {
     color: var(--dark);
-    &.internal {
-      background-color: transparent;
-    }
+    background-color: transparent;
   }
 }
 
@@ -482,6 +501,10 @@ video {
   flex: 1 1 auto;
 }
 
+div:has(> .overflow) {
+  position: relative;
+}
+
 ul.overflow,
 ol.overflow {
   max-height: 400;
@@ -513,4 +536,17 @@ ol.overflow {
   ul {
     padding-left: 1rem;
   }
+}
+
+.katex-display {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.external-embed.youtube,
+iframe.pdf {
+  aspect-ratio: 16 / 9;
+  height: 100%;
+  width: 100%;
+  border-radius: 5px;
 }

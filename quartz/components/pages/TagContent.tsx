@@ -1,15 +1,11 @@
-import {
-  QuartzComponent,
-  QuartzComponentConstructor,
-  QuartzComponentProps,
-} from "../types"
+import { QuartzComponent, QuartzComponentConstructor, QuartzComponentProps } from "../types"
 import style from "../styles/listPage.scss"
-import {PageList, SortFn} from "../PageList"
-import {FullSlug, getAllSegmentPrefixes, simplifySlug} from "../../util/path"
-import {QuartzPluginData} from "../../plugins/vfile"
-import {Root} from "hast"
-import {htmlToJsx} from "../../util/jsx"
-import {i18n} from "../../i18n"
+import { PageList, SortFn } from "../PageList"
+import { FullSlug, getAllSegmentPrefixes, simplifySlug } from "../../util/path"
+import { QuartzPluginData } from "../../plugins/vfile"
+import { Root } from "hast"
+import { htmlToJsx } from "../../util/jsx"
+import { i18n } from "../../i18n"
 
 interface TagContentOptions {
   sort?: SortFn
@@ -21,24 +17,20 @@ const defaultOptions: TagContentOptions = {
 }
 
 export default ((opts?: Partial<TagContentOptions>) => {
-  const options: TagContentOptions = {...defaultOptions, ...opts}
+  const options: TagContentOptions = { ...defaultOptions, ...opts }
 
   const TagContent: QuartzComponent = (props: QuartzComponentProps) => {
-    const {tree, fileData, allFiles, cfg} = props
+    const { tree, fileData, allFiles, cfg } = props
     const slug = fileData.slug
 
     if (!(slug?.startsWith("tags/") || slug === "tags")) {
-      throw new Error(
-        `Component "TagContent" tried to render a non-tag page: ${slug}`,
-      )
+      throw new Error(`Component "TagContent" tried to render a non-tag page: ${slug}`)
     }
 
     const tag = simplifySlug(slug.slice("tags/".length) as FullSlug)
     const allPagesWithTag = (tag: string) =>
       allFiles.filter((file) =>
-        (file.frontmatter?.tags ?? [])
-          .flatMap(getAllSegmentPrefixes)
-          .includes(tag),
+        (file.frontmatter?.tags ?? []).flatMap(getAllSegmentPrefixes).includes(tag),
       )
 
     const content =
@@ -50,9 +42,7 @@ export default ((opts?: Partial<TagContentOptions>) => {
     if (tag === "/") {
       const tags = [
         ...new Set(
-          allFiles
-            .flatMap((data) => data.frontmatter?.tags ?? [])
-            .flatMap(getAllSegmentPrefixes),
+          allFiles.flatMap((data) => data.frontmatter?.tags ?? []).flatMap(getAllSegmentPrefixes),
         ),
       ].sort((a, b) => a.localeCompare(b))
       const tagItemMap: Map<string, QuartzPluginData[]> = new Map()
@@ -64,9 +54,7 @@ export default ((opts?: Partial<TagContentOptions>) => {
           <article>
             <p>{content}</p>
           </article>
-          <p>
-            {i18n(cfg.locale).pages.tagContent.totalTags({count: tags.length})}
-          </p>
+          <p>{i18n(cfg.locale).pages.tagContent.totalTags({ count: tags.length })}</p>
           <div>
             {tags.map((tag) => {
               const pages = tagItemMap.get(tag)!
@@ -75,9 +63,7 @@ export default ((opts?: Partial<TagContentOptions>) => {
                 allFiles: pages,
               }
 
-              const contentPage = allFiles
-                .filter((file) => file.slug === `tags/${tag}`)
-                .at(0)
+              const contentPage = allFiles.filter((file) => file.slug === `tags/${tag}`).at(0)
 
               const root = contentPage?.htmlAst
               const content =
@@ -95,9 +81,7 @@ export default ((opts?: Partial<TagContentOptions>) => {
                   {content && <p>{content}</p>}
                   <div class="page-listing">
                     <p>
-                      {i18n(cfg.locale).pages.tagContent.itemsUnderTag({
-                        count: pages.length,
-                      })}
+                      {i18n(cfg.locale).pages.tagContent.itemsUnderTag({ count: pages.length })}
                       {pages.length > options.numPages && (
                         <>
                           {" "}
@@ -109,11 +93,7 @@ export default ((opts?: Partial<TagContentOptions>) => {
                         </>
                       )}
                     </p>
-                    <PageList
-                      limit={options.numPages}
-                      {...listProps}
-                      sort={opts?.sort}
-                    />
+                    <PageList limit={options.numPages} {...listProps} sort={opts?.sort} />
                   </div>
                 </div>
               )
@@ -132,11 +112,7 @@ export default ((opts?: Partial<TagContentOptions>) => {
         <div class={classes}>
           <article>{content}</article>
           <div class="page-listing">
-            <p>
-              {i18n(cfg.locale).pages.tagContent.itemsUnderTag({
-                count: pages.length,
-              })}
-            </p>
+            <p>{i18n(cfg.locale).pages.tagContent.itemsUnderTag({ count: pages.length })}</p>
             <div>
               <PageList {...listProps} />
             </div>

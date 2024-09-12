@@ -1,20 +1,20 @@
-import {promises} from "fs"
+import { promises } from "fs"
 import path from "path"
 import esbuild from "esbuild"
 import chalk from "chalk"
-import {sassPlugin} from "esbuild-sass-plugin"
+import { sassPlugin } from "esbuild-sass-plugin"
 import fs from "fs"
-import {intro, outro, select, text} from "@clack/prompts"
-import {rimraf} from "rimraf"
+import { intro, outro, select, text } from "@clack/prompts"
+import { rimraf } from "rimraf"
 import chokidar from "chokidar"
 import prettyBytes from "pretty-bytes"
-import {execSync, spawnSync} from "child_process"
+import { execSync, spawnSync } from "child_process"
 import http from "http"
 import serveHandler from "serve-handler"
-import {WebSocketServer} from "ws"
-import {randomUUID} from "crypto"
-import {Mutex} from "async-mutex"
-import {CreateArgv} from "./args.js"
+import { WebSocketServer } from "ws"
+import { randomUUID } from "crypto"
+import { Mutex } from "async-mutex"
+import { CreateArgv } from "./args.js"
 import {
   exitIfCancel,
   escapePath,
@@ -92,12 +92,8 @@ export async function handleCreate(argv) {
       await select({
         message: `Choose how to initialize the content in \`${contentFolder}\``,
         options: [
-          {value: "new", label: "Empty Quartz"},
-          {
-            value: "copy",
-            label: "Copy an existing folder",
-            hint: "overwrites `content`",
-          },
+          { value: "new", label: "Empty Quartz" },
+          { value: "copy", label: "Copy an existing folder", hint: "overwrites `content`" },
           {
             value: "symlink",
             label: "Symlink an existing folder",
@@ -194,9 +190,7 @@ See the [documentation](https://quartz.jzhao.xyz) for how to get started.
 
   // now, do config changes
   const configFilePath = path.join(cwd, "quartz.config.ts")
-  let configContent = await fs.promises.readFile(configFilePath, {
-    encoding: "utf-8",
-  })
+  let configContent = await fs.promises.readFile(configFilePath, { encoding: "utf-8" })
   configContent = configContent.replace(
     /markdownLinkResolution: '(.+)'/,
     `markdownLinkResolution: '${linkResolutionStrategy}'`,
@@ -206,7 +200,7 @@ See the [documentation](https://quartz.jzhao.xyz) for how to get started.
   // setup remote
   execSync(
     `git remote show upstream || git remote add upstream https://github.com/jackyzha0/quartz.git`,
-    {stdio: "ignore"},
+    { stdio: "ignore" },
   )
 
   outro(`You're all set! Not sure what to do next? Try:
@@ -245,7 +239,7 @@ export async function handleBuild(argv) {
       {
         name: "inline-script-loader",
         setup(build) {
-          build.onLoad({filter: /\.inline\.(ts|js)$/}, async (args) => {
+          build.onLoad({ filter: /\.inline\.(ts|js)$/ }, async (args) => {
             let text = await promises.readFile(args.path, "utf8")
 
             // remove default exports that we manually inserted
@@ -292,15 +286,11 @@ export async function handleBuild(argv) {
 
     if (cleanupBuild) {
       await cleanupBuild()
-      console.log(
-        chalk.yellow("Detected a source code change, doing a hard rebuild..."),
-      )
+      console.log(chalk.yellow("Detected a source code change, doing a hard rebuild..."))
     }
 
     const result = await ctx.rebuild().catch((err) => {
-      console.error(
-        `${chalk.red("Couldn't parse Quartz configuration:")} ${fp}`,
-      )
+      console.error(`${chalk.red("Couldn't parse Quartz configuration:")} ${fp}`)
       console.log(`Reason: ${chalk.grey(err)}`)
       process.exit(1)
     })
@@ -314,14 +304,12 @@ export async function handleBuild(argv) {
           meta.bytes,
         )})`,
       )
-      console.log(await esbuild.analyzeMetafile(result.metafile, {color: true}))
+      console.log(await esbuild.analyzeMetafile(result.metafile, { color: true }))
     }
 
     // bypass module cache
     // https://github.com/nodejs/modules/issues/307
-    const {default: buildQuartz} = await import(
-      `../../${cacheFile}?update=${randomUUID()}`
-    )
+    const { default: buildQuartz } = await import(`../../${cacheFile}?update=${randomUUID()}`)
     // ^ this import is relative, so base "cacheFile" path can't be used
 
     cleanupBuild = await buildQuartz(argv, buildMutex, clientRefresh)
@@ -330,8 +318,7 @@ export async function handleBuild(argv) {
 
   if (argv.serve) {
     const connections = []
-    const clientRefresh = () =>
-      connections.forEach((conn) => conn.send("rebuild"))
+    const clientRefresh = () => connections.forEach((conn) => conn.send("rebuild"))
 
     if (argv.baseDir !== "" && !argv.baseDir.startsWith("/")) {
       argv.baseDir = "/" + argv.baseDir
@@ -361,15 +348,13 @@ export async function handleBuild(argv) {
           headers: [
             {
               source: "**/*.*",
-              headers: [{key: "Content-Disposition", value: "inline"}],
+              headers: [{ key: "Content-Disposition", value: "inline" }],
             },
           ],
         })
         const status = res.statusCode
         const statusString =
-          status >= 200 && status < 300
-            ? chalk.green(`[${status}]`)
-            : chalk.red(`[${status}]`)
+          status >= 200 && status < 300 ? chalk.green(`[${status}]`) : chalk.red(`[${status}]`)
         console.log(statusString + chalk.grey(` ${argv.baseDir}${req.url}`))
         release()
       }
@@ -379,10 +364,7 @@ export async function handleBuild(argv) {
         res.writeHead(302, {
           Location: newFp,
         })
-        console.log(
-          chalk.yellow("[302]") +
-            chalk.grey(` ${argv.baseDir}${req.url} -> ${newFp}`),
-        )
+        console.log(chalk.yellow("[302]") + chalk.grey(` ${argv.baseDir}${req.url} -> ${newFp}`))
         res.end()
       }
 
@@ -428,7 +410,7 @@ export async function handleBuild(argv) {
       return serve()
     })
     server.listen(argv.port)
-    const wss = new WebSocketServer({port: argv.wsPort})
+    const wss = new WebSocketServer({ port: argv.wsPort })
     wss.on("connection", (ws) => connections.push(ws))
     console.log(
       chalk.cyan(
@@ -475,13 +457,11 @@ export async function handleUpdate(argv) {
 
   await popContentFolder(contentFolder)
   console.log("Ensuring dependencies are up to date")
-  const res = spawnSync("npm", ["i"], {stdio: "inherit"})
+  const res = spawnSync("npm", ["i"], { stdio: "inherit" })
   if (res.status === 0) {
     console.log(chalk.green("Done!"))
   } else {
-    console.log(
-      chalk.red("An error occurred above while installing dependencies."),
-    )
+    console.log(chalk.red("An error occurred above while installing dependencies."))
   }
 }
 
@@ -507,11 +487,7 @@ export async function handleSync(argv) {
     const contentStat = await fs.promises.lstat(contentFolder)
     if (contentStat.isSymbolicLink()) {
       const linkTarg = await fs.promises.readlink(contentFolder)
-      console.log(
-        chalk.yellow(
-          "Detected symlink, trying to dereference before committing",
-        ),
-      )
+      console.log(chalk.yellow("Detected symlink, trying to dereference before committing"))
 
       // stash symlink file
       await stashContentFolder(contentFolder)
@@ -528,8 +504,8 @@ export async function handleSync(argv) {
       timeStyle: "short",
     })
     const commitMessage = argv.message ?? `Quartz sync: ${currentTimestamp}`
-    spawnSync("git", ["add", "."], {stdio: "inherit"})
-    spawnSync("git", ["commit", "-m", commitMessage], {stdio: "inherit"})
+    spawnSync("git", ["add", "."], { stdio: "inherit" })
+    spawnSync("git", ["commit", "-m", commitMessage], { stdio: "inherit" })
 
     if (contentStat.isSymbolicLink()) {
       // put symlink back
@@ -555,19 +531,11 @@ export async function handleSync(argv) {
   await popContentFolder(contentFolder)
   if (argv.push) {
     console.log("Pushing your changes")
-    const res = spawnSync(
-      "git",
-      ["push", "-uf", ORIGIN_NAME, QUARTZ_SOURCE_BRANCH],
-      {
-        stdio: "inherit",
-      },
-    )
+    const res = spawnSync("git", ["push", "-uf", ORIGIN_NAME, QUARTZ_SOURCE_BRANCH], {
+      stdio: "inherit",
+    })
     if (res.status !== 0) {
-      console.log(
-        chalk.red(
-          `An error occurred above while pushing to remote ${ORIGIN_NAME}.`,
-        ),
-      )
+      console.log(chalk.red(`An error occurred above while pushing to remote ${ORIGIN_NAME}.`))
       return
     }
   }

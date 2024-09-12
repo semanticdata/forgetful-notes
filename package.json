@@ -107,6 +107,7 @@
     "yargs": "^17.7.2"
   },
   "dependencies": {
+    "@tweenjs/tween.js": "^25.0.0",
     "@types/mdast": "^4.0.4"
   }
 }
