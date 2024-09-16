@@ -3,8 +3,7 @@ title: Meta (how this site was made)
 description: How the site was made.
 updated: 2024-02-08
 compartir: true
-tags:
-  - meta
+tags: [meta]
 ---
 
 > [!summary]
@@ -31,6 +30,25 @@ The [source code](https://github.com/semanticdata/forgetful-notes) is hosted in 
 - Admonition-style Callouts
 - Markdown Links and Wikilinks Support
 - Latex Support
+
+## File Structure
+
+```
+root/
+├── .github/
+│   └── workflows/
+├── content/
+|   └── notes
+├── docs/
+|   └── documentation
+└── quartz/
+|   ├── components/
+|   ├── plugins/
+|   └── styles/
+└── quartz.config.ts
+└── quartz.layout.ts
+└── package.json
+```
 
 ## License
 
