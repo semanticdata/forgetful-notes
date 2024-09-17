@@ -15,19 +15,13 @@ I suffer from a chronic case of curiosity, which leads me to learn and do many i
 - …inspecting public road construction projects.
 - …working in a construction materials laboratory.
 
-In my free time, I’m drawn to even more topics, such as public infrastructure, digital gardening, materials science, game development, and personal knowledge management.
+## Work Experience
 
-## Professional Experience
+As an Assist. Contract Administrator for [Metro Transit](https://www.metrotransit.org/), I oversee projects through their installation, construction, and commissioning phases. On a day-to-day basis, I manage multiple projects that tie in one way or another to the public transportation system of the Twins Cities' Metro Area in Minnesota.
 
-As an Engineering Project Manager for the City of Crystal . Some of my duties include preparing detailed plans, specifications, solicitations, proposals for bids, and cost estimates; managing contracts from bid solicitation through project completion; and inspecting ongoing and completed construction for compliance with those specifications.
+With a little over 10 years of experience in public construction, I have amassed a number of unique projects that cover many different fields. It all started when I got my first job as a Civil Engineering Technician for a contracting company near my university. I was at the time attending [INTEC](https://www.intec.edu.do/) while pursuing a Bachelor's in Civil Engineering. Unfortunately, I was unable to finish my college education due to personal problems.
 
-I also maintain accurate project records, review as-built plans, and oversee right-of-way management and permitting. My role involves working closely with various private and public agencies, utilizing GIS and CAD systems, and assisting with Joint Water Commission and Watershed District functions.
-
-## Career Journey
-
-With over 10 years of experience in construction, I have amassed a number of unique projects and experiences that cover many different fields. It all started when I got my first job as a Civil Engineering Technician for a contracting company near my university. I was at the time attending INTEC while pursuing a Bachelor's in Civil Engineering. Unfortunately, I was unable to finish my college education due to personal reasons.
-
-Nevertheless, today I thrive having experience in not only public infrastructure, but technology, electrical, rail, and bus related projects as well. In the past, you could also find me working as a volunteer/on-call Firefighter for the City of Bloomington. If interested, take a look at my resume .
+Nevertheless, today I thrive having experience in not only public infrastructure, but technology, electrical, rail, and bus related projects as well.
 
 ## Reaching Out
 
