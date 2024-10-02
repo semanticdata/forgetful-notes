@@ -1,10 +1,15 @@
 @use "../../styles/variables.scss" as *;
 
 .explorer {
+  display: flex;
+  flex-direction: column;
+  overflow-y: hidden;
   &.desktop-only {
-    overflow-y: auto;
+    @media all and not ($mobile) {
+      display: flex;
+    }
   }
-  &:after {
+  /*&:after {
     pointer-events: none;
     content: "";
     width: 100%;
@@ -15,7 +20,7 @@
     opacity: 1;
     transition: opacity 0.3s ease;
     background: linear-gradient(transparent 0px, var(--light));
-  }
+  }*/
 }
 
 button#explorer {
@@ -62,7 +67,8 @@ button#explorer {
 #explorer-content {
   list-style: none;
   overflow: hidden;
-  max-height: none;
+  overflow-y: auto;
+  max-height: 100%;
   transition:
     max-height 0.35s ease,
     visibility 0s linear 0s;
@@ -70,6 +76,7 @@ button#explorer {
   visibility: visible;
 
   &.collapsed {
+    max-height: 0;
     transition:
       max-height 0.35s ease,
       visibility 0s linear 0.35s;
