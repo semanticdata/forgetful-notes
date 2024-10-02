@@ -13,6 +13,7 @@ export const sharedPageComponents: SharedLayout = {
       Blog: "https://miguelpimentel.do/",
       Meta: "/Meta",
       GitHub: "https://github.com/semanticdata/forgetful-notes/",
+      Uses: "/Uses",
     },
   }),
 }
