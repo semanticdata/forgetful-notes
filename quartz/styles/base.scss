@@ -388,10 +388,18 @@ figure[data-rehype-pretty-code-figure] {
     font-size: 0.9rem;
     padding: 0.1rem 0.5rem;
     border: 1px solid var(--lightgray);
-    width: max-content;
-    border-radius: 5px;
+    // width: max-content;
+    // border-radius: 5px;
     margin-bottom: -0.5rem;
     color: var(--darkgray);
+
+    position: relative;
+    top: 2.5rem;
+    border-top: 0;
+
+    & + pre {
+      padding-top: 1.5rem;
+    }
   }
 
   & > pre {
