@@ -1,8 +1,6 @@
 ---
 title: Guitar
-tags:
-  - learning
-  - music
+tags: [learning, music]
 compartir: true
 enableToc: true
 ---

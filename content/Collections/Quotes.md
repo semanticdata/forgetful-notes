@@ -3,8 +3,7 @@ title: Quotes
 description: Quotes that have resonated with me.
 compartir: true
 category: Collections
-tags:
-  - collection
+tags: [collection]
 ---
 Collection of quotes I like or that have resonated with me.
 

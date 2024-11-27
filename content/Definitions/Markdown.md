@@ -2,7 +2,7 @@
 title: Markdown
 compartir: true
 ---
-Markdown is a lightweight [[Markup Language|Markup Language]] that you can use to add formatting elements to plaintext text documents. Created by [John Gruber](https://daringfireball.net/projects/markdown/) in 2004, Markdown is now one of the world's most popular markup languages.
+Markdown is a lightweight [[Markup Language]] that you can use to add formatting elements to plaintext text documents. Created by [John Gruber](https://daringfireball.net/projects/markdown/) in 2004, Markdown is now one of the world's most popular markup languages.
 
 > [!Note]
 > This website's content is exclusively written in Markdown.
@@ -21,4 +21,4 @@ GitHub Flavored Markdown, also known as GFM, is a Markdown flavor used by GitHub
 
 ## Markdown Showcase
 
-Check out the [[markdown-showcase|markdown-showcase]] to see what Markdown can do.
+Check out the [[markdown-showcase]] to see what Markdown can do.

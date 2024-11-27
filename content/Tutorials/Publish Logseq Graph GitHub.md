@@ -8,7 +8,7 @@ tags: [tutorial]
 ---
 
 > [!note]
-> Logseq</a> is an open-source, Markdown-based knowledge management and note-taking tool that emphasizes bidirectional linking and block-level editing to facilitate non-linear, interconnected thought.
+> Logseq is an open-source, Markdown-based knowledge management and note-taking tool that emphasizes bidirectional linking and block-level editing to facilitate non-linear, interconnected thought.
 
 Step-by-step guide on how to publish your Logseq graph to GitHub Pages. We use the [workflow](https://github.com/semanticdata/logseq-starter-graph/blob/main/.github/workflows/logseq-validate-publish.yml) provided with my [Logseq Starter](https://github.com/semanticdata/logseq-starter-graph) project.
 
@@ -22,13 +22,13 @@ At the top of the repository, click **Settings**.
 
 ## 2. Navigate to the Pages Section
 
-On the left sidebar, click **Pages** under *Code and automation*.
+On the left sidebar, click **Pages** under _Code and automation_.
 
 ![source branch](https://raw.githubusercontent.com/semanticdata/logseq-starter-graph/main/assets/source-branch.png)
 
 ## 3. Configure GitHub Pages Source to GitHub Actions
 
-Under the *Build and deployment* section, under **Source**, change it from **Deploy from a branch** to **GitHub Actions**.
+Under the _Build and deployment_ section, under **Source**, change it from **Deploy from a branch** to **GitHub Actions**.
 
 ![source actions](https://raw.githubusercontent.com/semanticdata/logseq-starter-graph/main/assets/source-actions.png)
 
@@ -50,7 +50,7 @@ On the right, click **Run workflow**, then click on the new **Run workflow** (bl
 
 ## 6. Be Patient
 
-Please be patient.The first time you run the workflow, it will take *several minutes* to complete. Subsequent runs will be *faster*.
+Please be patient.The first time you run the workflow, it will take _several minutes_ to complete. Subsequent runs will be _faster_.
 
 Take a look at the first run for my repository:
 
@@ -64,13 +64,13 @@ But as you can see in the next screenshot, the next time you run the workflow, i
 
 Just over 1 minute!
 
-## 7. Use your GitHub Pages website url
+## 7. Use Your GitHub Pages Website Url
 
 Back at the repository landing page, click the ⚙ (Gear) icon to edit the repository details.
 
 ![repository sidebar](https://raw.githubusercontent.com/semanticdata/logseq-starter-graph/main/assets/repository-sidebar.png)
 
-Under *Website*, click **Use your GitHub Pages website**.
+Under _Website_, click **Use your GitHub Pages website**.
 
 ![repository details](https://raw.githubusercontent.com/semanticdata/logseq-starter-graph/main/assets/repository-details.png)
 

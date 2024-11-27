@@ -1,8 +1,7 @@
 ---
 title: Atomic Notes
 compartir: true
-tags:
-  - digital-gardening
+tags: [digital-gardening]
 ---
 Atomic notes are single, self-contained notes that capture a single idea or piece of information. They are meant to be read and understood without needing to refer to anything more.
 

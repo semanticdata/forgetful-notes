@@ -1,8 +1,7 @@
 ---
 title: Digital Garden
 compartir: true
-tags:
-  - digital-gardening
+tags: [digital-gardening]
 ---
 ## What is a Digital Garden
 

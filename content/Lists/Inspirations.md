@@ -2,8 +2,7 @@
 title: Inspirations
 compartir: true
 category: Lists
-tags:
-  - list
+tags: [list]
 ---
 These people and projects have resonated with me. Inspiring me to do things I would otherwise not do.
 

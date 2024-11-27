@@ -8,7 +8,7 @@ compartir: true
 
 ## `--checksum`
 
-  This changes the way rsync checks if the files have been changed and are in need of a transfer. Without this option, rsync [[Uses|Uses]] a "quick check" that (by default) checks if each file's size and time of last modification match between the sender and receiver. This option changes this to compare a 128-bit checksum for each file that has a matching size. Generating the checksums means that both sides will expend a lot of disk I/O reading all the data in the files in the transfer, so this can slow things down significantly (and this is prior to any reading that will be done to transfer changed files)
+  This changes the way rsync checks if the files have been changed and are in need of a transfer. Without this option, rsync [[Uses]] a "quick check" that (by default) checks if each file's size and time of last modification match between the sender and receiver. This option changes this to compare a 128-bit checksum for each file that has a matching size. Generating the checksums means that both sides will expend a lot of disk I/O reading all the data in the files in the transfer, so this can slow things down significantly (and this is prior to any reading that will be done to transfer changed files)
 
 ## `--archive`
 

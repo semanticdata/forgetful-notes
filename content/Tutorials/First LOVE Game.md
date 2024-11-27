@@ -1,7 +1,7 @@
 ---
-title: "Build a Scrolling Shooter with LÖVE in 200 Lines of Lua"
-description: "Learn how to create a basic shooter game in LÖVE2D in less than 200 lines of Lua."
-date: "2024-09-20"
+title: Build a Scrolling Shooter with LÖVE in 200 Lines of Lua
+description: Learn how to create a basic shooter game in LÖVE2D in less than 200 lines of Lua.
+date: 2024-09-20
 compartir: true
 category: Tutorials
 tags: [tutorial]

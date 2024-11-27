@@ -2,8 +2,7 @@
 title: Podcasts
 compartir: true
 category: Lists
-tags:
-  - list
+tags: [list]
 ---
 ## Regular Shows
 

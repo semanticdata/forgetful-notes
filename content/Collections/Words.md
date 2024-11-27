@@ -3,8 +3,7 @@ title: Words I Like
 description: A compilation of words I like and their definitions.
 compartir: true
 category: Collections
-tags:
-  - collection
+tags: [collection]
 ---
 A compilation of words I like and their definitions. Visit the [source](https://wordwarriors.wayne.edu/list).
 

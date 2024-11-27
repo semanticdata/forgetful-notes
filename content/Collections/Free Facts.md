@@ -1,10 +1,9 @@
 ---
 title: Free Facts
-description: Compilation of 'Free' Facts. They are not fun, but they are free.
+description: "Compilation of 'Free' Facts. They are not fun, but they are free."
 compartir: true
 category: Collections
-tags:
-  - collection
+tags: [collection]
 ---
 Compilation of "Free" Facts. They are not always fun, but they are free.
 

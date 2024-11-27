@@ -1,8 +1,6 @@
 ---
 title: NeoVim
-aliases:
-  - Nvim
-  - Vim
+aliases: [Nvim, Vim]
 compartir: true
 ---
 NeoVim is a fork of Vim focused on extensibility and usability. This is my short reference guide as I learn to use it.

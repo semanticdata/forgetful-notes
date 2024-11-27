@@ -1,8 +1,7 @@
 ---
 title: Uses
 compartir: true
-alias:
-  - Uses
+alias: ["Uses"]
 ---
 A non-comprehensive list of the hardware and software I use on a day-to-day basis.
 
