@@ -1,5 +1,5 @@
 ---
-title: About me
+title: About
 compartir: true
 ---
 Hello, my name is Miguel Pimentel. I am a self-taught hobby developer with too many ideas and not enough time. I was born in the Dominican Republic, and I currently live in Minnesota, US.
