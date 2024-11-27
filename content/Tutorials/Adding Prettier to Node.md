@@ -4,8 +4,7 @@ description: How to add and use Prettier on your Node based project.
 date: 2024-07-01
 compartir: true
 category: Tutorials
-tags:
-  - tutorial
+tags: [tutorial]
 ---
 
 [Prettier](https://prettier.io/) is an opinionated code formatter that automatically enforces consistent style rules for code, reducing formatting errors and improving readability.
