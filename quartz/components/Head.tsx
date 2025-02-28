@@ -201,6 +201,7 @@ export default (() => {
         {js
           .filter((resource) => resource.loadTime === "beforeDOMReady")
           .map((res) => JSResourceToScriptElement(res, true))}
+        <script defer src="https://umami.itscattime.com/script.js" data-website-id="8bee4a2f-a495-474b-8aad-3066bc5c7f45"></script>
       </head>
     )
   }
