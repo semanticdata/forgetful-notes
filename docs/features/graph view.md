@@ -35,6 +35,7 @@ Component.Graph({
     opacityScale: 1, // how quickly do we fade out the labels when zooming out?
     removeTags: [], // what tags to remove from the graph
     showTags: true, // whether to show tags in the graph
+    enableRadial: false, // whether to constrain the graph, similar to Obsidian
   },
   globalGraph: {
     drag: true,
@@ -48,6 +49,7 @@ Component.Graph({
     opacityScale: 1,
     removeTags: [], // what tags to remove from the graph
     showTags: true, // whether to show tags in the graph
+    enableRadial: true, // whether to constrain the graph, similar to Obsidian
   },
 })
 ```
