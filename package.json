@@ -13,6 +13,7 @@
   },
   "scripts": {
     "start": "npx quartz build --serve",
+    "dev": "npx quartz build --serve",
     "docs": "npx quartz build --serve -d docs",
     "update": "npx quartz update",
     "sync": "npx quartz sync",
