@@ -113,9 +113,9 @@ export const arrowRegex = new RegExp(/(-{1,2}>|={1,2}>|<-{1,2}|<={1,2})/g)
 // \[\[               -> open brace
 // ([^\[\]\|\#]+)     -> one or more non-special characters ([,],|, or #) (name)
 // (#[^\[\]\|\#]+)?   -> # then one or more non-special characters (heading link)
-// (\\?\|[^\[\]\#]+)? -> optional escape \ then | then one or more non-special characters (alias)
+// (\\?\|[^\[\]\#]+)? -> optional escape \ then | then zero or more non-special characters (alias)
 export const wikilinkRegex = new RegExp(
-  /!?\[\[([^\[\]\|\#\\]+)?(#+[^\[\]\|\#\\]+)?(\\?\|[^\[\]\#]+)?\]\]/g,
+  /!?\[\[([^\[\]\|\#\\]+)?(#+[^\[\]\|\#\\]+)?(\\?\|[^\[\]\#]*)?\]\]/g,
 )
 
 // ^\|([^\n])+\|\n(\|) -> matches the header row
@@ -222,7 +222,7 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options>>
                 let [rawFp, rawHeader, rawAlias] = capture
                 const fp = rawFp?.trim() ?? ""
                 const anchor = rawHeader?.trim() ?? ""
-                const alias = rawAlias?.slice(1).trim() ?? ""
+                const alias: string | undefined = rawAlias?.slice(1).trim()
 
                 // embed cases
                 if (value.startsWith("!")) {
@@ -464,6 +464,30 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options>>
                   })
                 }
 
+                // For the rest of the MD callout elements other than the title, wrap them with
+                // two nested HTML <div>s (use some hacked mdhast component to achieve this) of
+                // class `callout-content` and `callout-content-inner` respectively for
+                // grid-based collapsible animation.
+                if (calloutContent.length > 0) {
+                  node.children = [
+                    node.children[0],
+                    {
+                      data: { hProperties: { className: ["callout-content"] }, hName: "div" },
+                      type: "blockquote",
+                      children: [
+                        {
+                          data: {
+                            hProperties: { className: ["callout-content-inner"] },
+                            hName: "div",
+                          },
+                          type: "blockquote",
+                          children: [...calloutContent],
+                        },
+                      ],
+                    },
+                  ]
+                }
+
                 // replace first line of blockquote with title and rest of the paragraph text
                 node.children.splice(0, 1, ...blockquoteContent)
 
@@ -484,21 +508,6 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options>>
                     "data-callout-fold": collapse,
                     "data-callout-metadata": calloutMetaData,
                   },
-                }
-
-                // Add callout-content class to callout body if it has one.
-                if (calloutContent.length > 0) {
-                  const contentData: BlockContent | DefinitionContent = {
-                    data: {
-                      hProperties: {
-                        className: "callout-content",
-                      },
-                      hName: "div",
-                    },
-                    type: "blockquote",
-                    children: [...calloutContent],
-                  }
-                  node.children = [node.children[0], contentData]
                 }
               }
             })
