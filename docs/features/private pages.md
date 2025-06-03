@@ -26,7 +26,7 @@ Common examples include:
 
 - `some/folder`: exclude the entire of `some/folder`
 - `*.md`: exclude all files with a `.md` extension
-- `!*.md` exclude all files that _don't_ have a `.md` extension
+- `!(*.md)` exclude all files that _don't_ have a `.md` extension. Note that negations _must_ parenthesize the rest of the pattern!
 - `**/private`: exclude any files or folders named `private` at any level of nesting
 
 > [!warning] Marking something as private via either a plugin or through the `ignorePatterns` pattern will only prevent a page from being included in the final built site. If your GitHub repository is public, also be sure to include an ignore for those in the `.gitignore` of your Quartz. See the `git` [documentation](https://git-scm.com/docs/gitignore#_pattern_format) for more information.
