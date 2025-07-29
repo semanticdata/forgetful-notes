@@ -3,21 +3,21 @@
 // put your custom CSS here!
 
 @media (max-width: 800px) {
-    .page-title {
-        font-size: 1.25rem;
-        font-weight: normal;
-    }
+  .page-title {
+    font-size: 1.25rem;
+    font-weight: normal;
+  }
 
-    .search>.search-button {
-        background: transparent;
-    }
+  .search > .search-button {
+    background: transparent;
+  }
 
-    .search>.search-button>p {
-        display: none;
-    }
+  .search > .search-button > p {
+    display: none;
+  }
 
-    button.darkmode,
-    button.readermode {
-        position: inherit;
-    }
+  button.darkmode,
+  button.readermode {
+    position: inherit;
+  }
 }
