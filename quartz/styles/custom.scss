@@ -2,6 +2,18 @@
 
 // put your custom CSS here!
 
+.page-title {
+  font-size: 1.5rem;
+}
+
+.search {
+  max-width: fit-content;
+}
+
+.flex-component > div:first-of-type {
+  flex-grow: 0 !important;
+}
+
 @media (max-width: 800px) {
   .page-title {
     font-size: 1.25rem;
