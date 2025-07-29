@@ -59,124 +59,52 @@ npx quartz <command> --help
 
 You can add custom CSS code within `/quartz/styles/custom.scss`. You will then need to uncomment line 4 of `/quartz/styles/base.scss` to have it take effect.
 
-| Used in: | Font Family | Previous Font |
-| --- | :-: | :-: |
-| Headers | [Bitter](https://fonts.google.com/specimen/Bitter) | [Schibsted Grotesk](https://fonts.google.com/specimen/Schibsted+Grotesk) |
-| Body | [Poppins](https://fonts.google.com/specimen/Poppins) | [Source Sans Pro](https://fonts.google.com/specimen/Source+Sans+3) |
-| Code | [Fira Mono](https://fonts.google.com/specimen/Fira+Mono) | [IBM Plex Mono](https://fonts.google.com/specimen/IBM+Plex+Mono) |
+| Used in: |                       Font Family                        |                              Previous Font                               |
+| -------- | :------------------------------------------------------: | :----------------------------------------------------------------------: |
+| Headers  |    [Bitter](https://fonts.google.com/specimen/Bitter)    | [Schibsted Grotesk](https://fonts.google.com/specimen/Schibsted+Grotesk) |
+| Body     |   [Poppins](https://fonts.google.com/specimen/Poppins)   |    [Source Sans Pro](https://fonts.google.com/specimen/Source+Sans+3)    |
+| Code     | [Fira Mono](https://fonts.google.com/specimen/Fira+Mono) |     [IBM Plex Mono](https://fonts.google.com/specimen/IBM+Plex+Mono)     |
 
 ## 🛠️ Technology
 
 The site uses various technologies cobbled together. Here's a few of them:
 
 - [Quartz](https://github.com/jackyzha0/quartz): a fast, batteries-included static-site generator.
-- [Prettier](https://github.com/prettier/prettier): an opinionated code formatter.
-- [Sass](https://github.com/sass/sass): makes CSS fun!
 - [TypeScript](https://github.com/microsoft/TypeScript): superset of JavaScript that compiles to clean JavaScript output.
+- [Preact](https://preactjs.com/): fast 3kB alternative to React with the same modern API.
+- [esbuild](https://esbuild.github.io/): an extremely fast JavaScript bundler and minifier.
+- [D3.js](https://d3js.org/): data-driven documents for interactive visualizations.
+- [Shiki](https://shiki.matsu.io/): a beautiful syntax highlighter.
+- [KaTeX](https://katex.org/) & [MathJax](https://www.mathjax.org/): mathematical notation rendering.
+- [FlexSearch](https://github.com/nextapps-de/flexsearch): full-text search library.
+- [Remark](https://remark.js.org/) & [Rehype](https://github.com/rehypejs/rehype): unified ecosystem for processing markdown and HTML.
+- [Sass](https://github.com/sass/sass): makes CSS fun!
+- [Prettier](https://github.com/prettier/prettier): an opinionated code formatter.
 
 All content for the site is written in _Markdown_ within [Obsidian](https://obsidian.md/)—an extensible, flexible note-taking app. To export the notes from Obsidian, I rely on the [GitHub Publisher](https://github.com/ObsidianPublisher) plugin.
 
-## 🔀 Workflows
+## 🚀 Deployment
 
-### 🔨 Build only
+The site is automatically deployed to GitHub Pages when changes are pushed to the main branch. A backup deployment is also available on Vercel.
 
-```yml
-steps:
-  - name: Checkout
-    uses: actions/checkout@v4
-  - name: Setup Node
-    uses: actions/setup-node@v4
-  - name: Install Dependencies
-    run: npm i
-  - name: Build Quartz
-    run: npx quartz build
-```
+## 🤝 Contributing
 
-### 🚀 Build and Deploy
+This is a personal digital garden, but if you notice any issues or have suggestions:
 
-```yml
-# Using npm
-steps:
-  - name: Checkout
-    uses: actions/checkout@v4
-  - name: Setup Node
-    uses: actions/setup-node@v4
-  - name: Install Dependencies
-    run: npm i
-  - name: Build Quartz
-    run: npm run build
-  - name: Upload artifact
-    uses: actions/upload-pages-artifact@v3
-    with:
-      path: public
-  - name: Deploy to GitHub Pages
-    id: deployment
-    uses: actions/deploy-pages@v4
-```
+1. Check existing [issues](https://github.com/semanticdata/forgetful-notes/issues)
+2. Open a new issue with detailed information
+3. For content suggestions, feel free to reach out via the website's contact methods
 
-```yml
-# Using pnpm
-steps:
-  - name: Checkout
-    uses: actions/checkout@v4
-  - name: Setup PNPM
-    uses: pnpm/action-setup@v3
-  - name: Get pnpm store directory
-    shell: bash
-    run: |
-      echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
-  - name: Setup pnpm cache
-    uses: actions/cache@v4
-    with:
-      path: ${{ env.STORE_PATH }}
-      key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
-      restore-keys: |
-        ${{ runner.os }}-pnpm-store-
-  - name: Install dependencies
-    run: pnpm install
-  - name: Build Quartz Site
-    run: pnpm run build
-  - name: Upload artifact
-    uses: actions/upload-pages-artifact@v3
-    with:
-      path: public
-  - name: Deploy to GitHub Pages
-    uses: actions/deploy-pages@v4
-    id: deployment
-```
+## 📝 Issues & Support
 
-```yaml
-# Using Bun (my preferred method)
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Setup Bun
-        uses: oven-sh/setup-bun@v2
-        with:
-          bun-version: latest
-      - name: Install Dependencies
-        run: bun install
-      - name: Build Quartz
-        run: npx quartz build
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: public
+Found a bug or have a question? 
 
-  deploy:
-    needs: build
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
-```
+**For site-specific issues:** Please [open an issue](https://github.com/semanticdata/forgetful-notes/issues/new) with:
+- Clear description of the problem
+- Steps to reproduce (if applicable)
+- Your browser and OS information
+
+**For Quartz-related issues:** If the issue is with Quartz itself (the static site generator), please report it in the [Quartz repository](https://github.com/jackyzha0/quartz/issues) instead.
 
 ## © License
 
