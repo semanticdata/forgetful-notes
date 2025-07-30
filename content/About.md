@@ -2,29 +2,27 @@
 title: About
 compartir: true
 ---
-Hello, my name is Miguel Pimentel. I am a self-taught hobby developer with too many ideas and not enough time. I was born in the Dominican Republic, and I currently live in Minnesota, US.
 
-I suffer from a chronic case of curiosity, which leads me to learn and do many interesting things like:
+Hello, I'm Miguel Pimentel—a self-taught developer from the Dominican Republic, now living in Minnesota. I suffer from a chronic case of curiosity, which has led me to explore diverse fields: designing bike trails in AutoCAD, getting licensed as a firefighter, creating browser extensions, and learning emergency medicine.
 
-- …designing bike trails and residential roads in AutoCAD Civil 3D.
-- …creating my own [browser extensions](https://addons.mozilla.org/en-US/firefox/user/17772574/).
-- …teaching [ESL](https://en.wikipedia.org/wiki/English_as_a_second_or_foreign_language).
-- …learning web development and computer programming.
-- …getting licensed as a Firefighter.
-- …getting certified as Emergency Medical Technician.
-- …inspecting public road construction projects.
-- …working in a construction materials laboratory.
+This is my [[Digital Garden|digital garden]], where I cultivate thoughts, collect interesting discoveries, and document my ongoing learning journey. Unlike traditional blogs, these notes grow and evolve over time through [[Continuous Care|continuous care]], connected by ideas rather than chronology.
 
-## Work Experience
+## What You'll Find Here
 
-As an Assist. Contract Administrator for [Metro Transit](https://www.metrotransit.org/), I oversee projects through their installation, construction, and commissioning phases. On a day-to-day basis, I manage multiple projects that tie in one way or another to the public transportation system of the Twins Cities' Metro Area in Minnesota.
+My garden contains [[Atomic Notes|atomic notes]]—focused, self-contained thoughts that can stand alone or connect to form larger ideas. I'm currently implementing a growth system (🌱 seedlings, 🌿 budding, 🌳 evergreen) to indicate the maturity of different notes as they develop.
 
-With a little over 10 years of experience in public construction, I have amassed a number of unique projects that cover many different fields. It all started when I got my first job as a Civil Engineering Technician for a contracting company near my university. I was at the time attending [INTEC](https://www.intec.edu.do/) while pursuing a Bachelor's in Civil Engineering. Unfortunately, I was unable to finish my college education due to personal problems.
+The **[[Free Facts]]** collection showcases my favorite type of discovery—those wonderfully random pieces of knowledge that serve no practical purpose but satisfy an itch of curiosity. I also maintain a growing collection of **[[words|Words I Like]]** because language fascinates me, and a **[[Uses]]** page documenting the tools that power my daily workflows.
 
-Nevertheless, today I thrive having experience in not only public infrastructure, but technology, electrical, rail, and bus related projects as well.
+## Knowledge Systems
 
-## Reaching Out
+My approach to managing information centers around [[Sweep Your Mind|sweeping your mind]]—getting thoughts out of your head and into a reliable system. This garden serves as both my external brain and a testament to [[Consistency|consistency]] over intensity in learning.
 
-Here are some places you can find me on the web. You'll probably be able to find me in other places too, provided you look hard enough.
+The development side of my curiosity surfaces in notes about [[Git]] for version control, [[CLI Commands Cheat Sheet|CLI commands]], [[Neovim]] for text editing, tutorials on everything from [[First Love Game|creating your first LÖVE game]] to [[Publish Logseq Graph Github|publishing Logseq graphs on GitHub]], and explorations of tools like [[Espanso Cheat Sheet|Espanso]] for text expansion.
 
-[GitHub](https://github.com/semanticdata/) • [Instagram](https://instagram.com/miguelapv) • [LinkedIn](https://www.linkedin.com/in/miguelpimentel29/)
+## Professional Work
+
+I currently work as the Engineering Project Manager for the City of Crystal, Minnesota, overseeing public infrastructure projects from conception through completion, along with traffic studies and ROW permits. With over 10 years in public construction, I've developed a systems-thinking approach that carries over into how I organize knowledge and approach problems—whether technical or otherwise.
+
+---
+
+**New to digital gardens?** Start with [[Words|Words I Like]] if you enjoy language and definitions, explore [[Uses]] if you're curious about tools and workflows, or dive into [[Motivation Strategies|Encouragements]] if you want to see how I approach motivation and habits. Each note connects to others, so follow your curiosity wherever it leads.

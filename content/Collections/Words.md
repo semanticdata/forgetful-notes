@@ -121,6 +121,12 @@ A compilation of words I like and their definitions. Visit the [source](https://
 2. A rumour or story, especially one that is untrue or absurd.
 3. Australian slang for an erroneous or improbable story that is claimed to be factual.
 
+## Gainsay (verb)
+
+1. Deny or contradict (a fact or statement).
+2. Speak against or oppose (someone).
+3. To declare to be untrue or invalid.
+
 ## Glib (adjectives)
 
 1. Performed with a natural, offhand ease.
@@ -182,6 +188,12 @@ A compilation of words I like and their definitions. Visit the [source](https://
 1. A small, medicated candy intended to be dissolved slowly in the mouth to lubricate and soothe irritated tissues of the throat.
 2. A four-sided planar figure with a diamondlike shape; a rhombus that is not a square.
 3. Something having this shape, especially a heraldic device.
+
+## Obsequious (adjective)
+
+1. Characterized by or showing servile obedience and excessive eagerness to please; fawning; ingratiating.
+2. Obedient or attentive to an excessive or servile degree.
+3. Obedient; dutiful.
 
 ## Palliate (verb)
 

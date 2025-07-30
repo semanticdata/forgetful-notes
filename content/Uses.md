@@ -3,7 +3,7 @@ title: Uses
 compartir: true
 alias: ["Uses"]
 ---
-A non-comprehensive list of the hardware and software I use on a day-to-day basis.
+This is a non-comprehensive list of the hardware and software I use on a day-to-day basis.
 
 ## Hardware
 

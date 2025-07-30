@@ -4,9 +4,7 @@ compartir: true
 category: Collections
 tags: [collection]
 ---
-You may drag the links underneath each heading to your bookmarks bar. This will create a new bookmark with the correct name and URL.
-
-Alternatively, you may copy the code for a bookmarklet and create your own. If you find it easier, you may use this [Bookmarklet Maker](https://caiorss.github.io/bookmarklet-maker/).
+You may drag the links underneath each heading to your bookmarks bar. This will create a new bookmark with the correct name and URL. Alternatively, you may copy the code for a bookmarklet and create your own. If you find it easier, you may use this [Bookmarklet Maker](https://caiorss.github.io/bookmarklet-maker/).
 
 ## Utilities
 

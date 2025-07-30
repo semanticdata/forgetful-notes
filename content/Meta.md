@@ -18,7 +18,7 @@ However, this site is not specifically built with any of the aforementioned. Ins
 
 ## Technology
 
-All content for the site is written in [[Markdown|Markdown]] within [Obsidian](https://obsidian.md/)—an extensible, flexible note-taking app. To export the notes from Obsidian, I rely on the [GitHub Publisher](https://github.com/ObsidianPublisher) plugin.
+All content for the site is written in [[Markdown]] within [Obsidian](https://obsidian.md/)—an extensible, flexible note-taking app. To export the notes from Obsidian, I rely on the [GitHub Publisher](https://github.com/ObsidianPublisher) plugin.
 
 The [source code](https://github.com/semanticdata/forgetful-notes) is hosted in [GitHub](https://github.com/). From here we use [GitHub Actions](https://github.com/features/actions) to build and deploy the site to [GitHub Pages](https://pages.github.com/).
 
@@ -30,26 +30,3 @@ The [source code](https://github.com/semanticdata/forgetful-notes) is hosted in 
 - Admonition-style Callouts
 - Markdown Links and Wikilinks Support
 - Latex Support
-
-## File Structure
-
-```
-root/
-├── .github/
-│   └── workflows/
-├── content/
-|   └── notes
-├── docs/
-|   └── documentation
-└── quartz/
-|   ├── components/
-|   ├── plugins/
-|   └── styles/
-└── quartz.config.ts
-└── quartz.layout.ts
-└── package.json
-```
-
-## License
-
-This website is released under the [MIT License](https://github.com/semanticdata/forgetful-notes?tab=MIT-1-ov-file#readme).

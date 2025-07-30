@@ -1,26 +1,19 @@
 ---
 title: Emmet Cheat Sheet
+description: "A quick reference for Emmet abbreviations for faster HTML and CSS coding."
 compartir: true
+tags: [emmet, html, css, cheat-sheet, web-development]
 ---
-- [Documentation](https://docs.emmet.io/)
-- [Documentation](https://code.visualstudio.com/docs/editor/emmet) for Emmet in VS Code
 
-## Notes on Abbreviation Formatting
+This cheat sheet provides a quick reference for Emmet abbreviations, a powerful toolkit for web developers that significantly speeds up HTML and CSS workflow.
 
-When you get familiar with Emmet's abbreviations syntax, you may want to use some formatting to make your abbreviations more readable. But it won't work, because space is a *stop symbol,* where Emmet stops abbreviation parsing. Many users mistakenly think that each abbreviation should be written in a new line, but they are wrong: you can type and expand the abbreviation anywhere in the text.
+Emmet abbreviation and snippet expansions are enabled by default in `html`, `haml`, `pug`, `slim`, `jsx`, `xml`, `xsl`, `css`, `scss`, `sass`, `less` and `stylus` files, as well as any language that inherits from any of the above like `handlebars` and `php`.
 
-This is why Emmet needs some indicators (like spaces) where it should stop parsing to not expand anything that you don't need. If you're still thinking that such formatting is required for complex abbreviations to make them more readable:
+## HTML Abbreviation Syntax
 
-- Abbreviations are not a template language, they don't have to be "readable", they have to be "quickly expandable and removable".
-- You don't really need to write complex abbreviations. Stop thinking that "typing" is the slowest process in web-development. You'll quickly find out that constructing a single complex abbreviation is much slower and error-prone than constructing and typing a few short ones.
+### Children
 
-## HTML + CSS Emmet Short Guide
-
-Emmet abbreviation and snippet expansions are enabled by default in `html`, `haml`, `pug`, `slim`, `jsx`, `xml`, `xsl`, `[[CSS]]`, `scss`, `sass`, `less` and `stylus` files, as well as any language that inherits from any of the above like `handlebars` and `php`.
-
-## Children
-
-```css
+```text
 div>ul>li
 ```
 
@@ -32,9 +25,9 @@ div>ul>li
 </div>
 ```
 
-## Siblings
+### Siblings
 
-```css
+```text
 div + p + bq
 ```
 
@@ -44,30 +37,32 @@ div + p + bq
 <blockquote></blockquote>
 ```
 
-## Climb-up
+### Climb-up
 
-```css
+```text
 div+div>p>span+em
 ```
 
-```html<div></div>
+```html
+<div></div>
 <div>
     <p><span></span><em></em></p>
 </div>
 ```
 
-```css
+```text
 div+div>p>span+em^bq
 ```
 
-```html<div></div>
+```html
+<div></div>
 <div>
     <p><span></span><em></em></p>
     <blockquote></blockquote>
 </div>
 ```
 
-```css
+```text
 div+div>p>span+em^^^bq
 ```
 
@@ -79,9 +74,9 @@ div+div>p>span+em^^^bq
 <blockquote></blockquote>
 ```
 
-## Multiplication
+### Multiplication
 
-```css
+```text
 ul>li*5
 ```
 
@@ -95,9 +90,9 @@ ul>li*5
 </ul>
 ```
 
-## Grouping
+### Grouping
 
-```css
+```text
 div>(header>ul>li*2>a)+footer>p
 ```
 
@@ -115,7 +110,7 @@ div>(header>ul>li*2>a)+footer>p
 </div>
 ```
 
-```css
+```text
 (div>dl>(dt+dd)*3)+footer>p
 ```
 
@@ -135,9 +130,9 @@ div>(header>ul>li*2>a)+footer>p
 </footer>
 ```
 
-## ID and Classes
+### ID and Classes
 
-```css
+```text
 div#header+div.page+div#footer.class1.class2.class3
 ```
 
@@ -147,9 +142,9 @@ div#header+div.page+div#footer.class1.class2.class3
 <div id="footer" class="class1 class2 class3"></div>
 ```
 
-## Custom Attributes
+### Custom Attributes
 
-```css
+```text
 td[title="Hello world!" colspan=3]
 ```
 
@@ -157,9 +152,9 @@ td[title="Hello world!" colspan=3]
 <td title="Hello world!" colspan="3"></td>
 ```
 
-## Item Numbering
+### Item Numbering
 
-```css
+```text
 ul>li.item$*5
 ```
 
@@ -173,8 +168,8 @@ ul>li.item$*5
 </ul>
 ```
 
-```css
-ul>li.item$$$*5
+```text
+ul>li.item$$*5
 ```
 
 ```html
@@ -187,13 +182,14 @@ ul>li.item$$$*5
 </ul>
 ```
 
-## Changing Numbering Base and Direction
+### Changing Numbering Base and Direction
 
-```css
+```text
 ul>li.item$@-*5
 ```
 
-```html<ul>
+```html
+<ul>
     <li class="item5"></li>
     <li class="item4"></li>
     <li class="item3"></li>
@@ -202,11 +198,12 @@ ul>li.item$@-*5
 </ul>
 ```
 
-```css
+```text
 ul>li.item$@3*5
 ```
 
-```html<ul>
+```html
+<ul>
     <li class="item3"></li>
     <li class="item4"></li>
     <li class="item5"></li>
@@ -215,7 +212,7 @@ ul>li.item$@3*5
 </ul>
 ```
 
-```css
+```text
 ul>li.item$@-3*5
 ```
 
@@ -229,9 +226,9 @@ ul>li.item$@-3*5
 </ul>
 ```
 
-## Text
+### Text
 
-```css
+```text
 a{Click me}
 ```
 
@@ -239,7 +236,7 @@ a{Click me}
 <a href="">Click me</a>
 ```
 
-```css
+```text
 a{click}+b{here}
 ```
 
@@ -247,7 +244,7 @@ a{click}+b{here}
 <a href="">click</a><b>here</b>
 ```
 
-```css
+```text
 a>{click}+b{here}
 ```
 
@@ -255,7 +252,7 @@ a>{click}+b{here}
 <a href="">click<b>here</b></a>
 ```
 
-```css
+```text
 p>{Click }+a{here}+{ to continue}
 ```
 
@@ -263,7 +260,7 @@ p>{Click }+a{here}+{ to continue}
 <p>Click <a href="">here</a> to continue</p>
 ```
 
-```css
+```text
 p{Click }+a{here}+{ to continue}
 ```
 

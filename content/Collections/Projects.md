@@ -2,8 +2,7 @@
 title: Projects
 compartir: true
 ---
-
-A non-inclusive, non-exhaustive compilation of both my professional and personal projects.
+This is a a non-inclusive, non-exhaustive compilation of both my professional and personal projects.
 
 ## Personal Projects
 

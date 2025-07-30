@@ -1,165 +1,188 @@
 ---
 title: Python Cheat Sheet
+description: "A quick reference for core Python syntax, data structures, control flow, and other common features."
 compartir: true
+tags: [python, language, cheat-sheet, development]
 ---
 
-- Python terminal: `python3` in cmd.
-- Comments: `#` at the start of any line.
-- Print: `print("Stay Safe…)`
-- Indentation: must be followed.
+This cheat sheet provides a quick reference for the most common syntax and features in the [[Python]] programming language. For a more detailed explanation, see the main [[Python]] note.
 
-## Examples
+## Syntax and Variables
 
-### Example 1
+Python uses indentation to define code blocks. Variables are dynamically typed.
 
 ```python
-num = 5
-print(num)
-returns 5
-type(num)
-<class 'int'>
+# This is a comment
+name = "Alice"  # String
+age = 30         # Integer
+height = 5.8     # Float
+is_student = True # Boolean
+data = None      # NoneType
 ```
 
-### Example 2
+## Data Types and Structures
+
+### Primitives
 
 ```python
-num = 5.0
-print(num)
-returns 5
-type(num)
-<class 'float'>
+# Numbers
+int_num = 100
+float_num = 10.5
+
+# Strings
+my_string = "Hello, World!"
+
+# Booleans
+is_true = True
+is_false = False
 ```
 
-### Example 3
+### Data Structures
 
+**Lists**: Ordered, mutable collections.
 ```python
-  greet = "Hello user"
-  print(greet)
-  returns: 'Hello user'
-  type(greet)
-  <class 'str'>
+my_list = [1, "apple", 3.14]
+my_list.append("banana")
+print(my_list[1])  # 'apple'
 ```
 
-### Example 4
-
+**Tuples**: Ordered, immutable collections.
 ```python
-is_available = True
-print(is_available)
-returns: True
-type(is_available)
-returns: <class 'bool'>
+my_tuple = (1, "apple", 3.14)
+print(my_tuple[0]) # 1
 ```
 
-### Example 5
-
+**Dictionaries**: Unordered, mutable key-value pairs.
 ```python
-num = None
-print(num)
-returns: None
-type(num)
-returns: <class 'NoType'>
+my_dict = {"name": "Bob", "age": 25}
+print(my_dict["name"]) # 'Bob'
+my_dict["city"] = "New York"
+```
+
+**Sets**: Unordered, mutable collections of unique elements.
+```python
+my_set = {1, 2, 3, 3, 4}
+# my_set is {1, 2, 3, 4}
+my_set.add(5)
 ```
 
 ## Operators
 
-`+ - * / % ** // = += -= *= /= == != > < >= <= and or not`
-
-### Example 1
+### Arithmetic
 
 ```python
-a = 6
-b = 2
-a + b
-returns: 8
-a - b
-returns = 4
-a / b
-returns: 3
-a * b
-returns: 12
-a ** b
-returns: 36
+5 + 2  # Addition -> 7
+5 - 2  # Subtraction -> 3
+5 * 2  # Multiplication -> 10
+5 / 2  # Division -> 2.5
+5 // 2 # Floor Division -> 2
+5 % 2  # Modulus -> 1
+5 ** 2 # Exponentiation -> 25
 ```
 
-### Example 2
+### Comparison
 
 ```python
-a = 7
-b = 3
-a % b
-returns: 1
-a // b
-returns: 2
+a, b = 5, 10
+a == b # False
+a != b # True
+a > b  # False
+a <= b # True
 ```
 
-### Example 3
+### Logical
 
 ```python
-a =- 5
-b = 2
-a > b
-returns: True
-a < b
-returns: False
-a == b
-returns: False
-a >= 5
-returns: True
-b <= 1
-returns: False
+(5 > 2) and (10 > 5) # True
+(5 > 2) or (5 > 10)  # True
+not (5 > 2)          # False
 ```
 
-### Example 4
+## Control Flow
+
+### Conditional Statements
 
 ```python
-a = 10
-b = 2
-a == 2 and b == 10
-returns: False
-a == 10 or b == 20
-returns: True
-not(a == 10)
-returns: False
-not(a == 2)
-returns: True
-```
-
-## Conditional Statements
-
-### Example 1
-
-```python
-number = 5
-if number == 10:
-print("Number is 10")
-elif number < 10:
-print("Number is less than 10")
+score = 85
+if score >= 90:
+    print("A")
+elif score >= 80:
+    print("B")
 else:
-print("Number is more than 10")
+    print("C")
+# Output: B
 ```
 
-**Returns**: `Number is less than 10`
+### Loops
 
-### Example 2
+**For Loop**: Iterates over a sequence.
+```python
+for i in range(5): # 0 to 4
+    print(i)
+
+for fruit in ["apple", "banana"]:
+    print(fruit)
+```
+
+**While Loop**: Executes as long as a condition is true.
+```python
+count = 0
+while count < 5:
+    print(count)
+    count += 1
+```
+
+## Functions
+
+Functions are defined with the `def` keyword.
 
 ```python
-is_available = True
-f is_available:
-  print("Yes it is available")
-else:
-  print("Not available")
+def greet(name):
+    """A function to greet someone."""
+    return f"Hello, {name}!"
+
+message = greet("World")
+print(message) # "Hello, World!"
 ```
 
-**Returns**: `Yes it is available`
+## List Comprehensions
 
-### Example 3
+A concise way to create lists.
 
 ```python
-is_available = True
-if not is_available:
-  print("Not available")
-else:
-  print("Yes it is available")
+# Create a list of squares from 0 to 9
+squares = [x**2 for x in range(10)]
+# [0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
+
+# Create a list of even numbers
+evens = [x for x in range(10) if x % 2 == 0]
+# [0, 2, 4, 6, 8]
 ```
 
-**Returns**: `Yes it is available`
+## Working with Files
+
+Using `with` is recommended as it handles closing the file automatically.
+
+```python
+# Writing to a file
+with open("file.txt", "w") as f:
+    f.write("Hello, file!\n")
+
+# Reading from a file
+with open("file.txt", "r") as f:
+    content = f.read()
+    print(content)
+```
+
+## Exception Handling
+
+Handle errors gracefully using `try...except` blocks.
+
+```python
+try:
+    result = 10 / 0
+except ZeroDivisionError:
+    print("Cannot divide by zero!")
+finally:
+    print("Execution finished.")
+```

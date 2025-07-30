@@ -1,12 +1,11 @@
 ---
 title: Books
-description: Books I've read.
+description: "Books I've read."
 compartir: true
 category: Collections
-tags:
-  - collection
+tags: [collection]
 ---
-Collection of books I have read, would like to read, or would like to read.
+This is a collection of books I have read, would like to read, or would like to read.
 
 ## John Green
 
