@@ -23,9 +23,13 @@ You'll learn how to capture precise, consistent screenshots of HTML elements usi
 
 Press `Ctrl + Shift + I` or `F12` to open the browser developer tools.
 
+![dev-tools-edge](https://bear-images.sfo2.cdn.digitaloceanspaces.com/database-1719509556.png)
+
 ## 2. Toggle Device Toolbar
 
 Press `Ctrl + Shift + M` to toggle the Device Toolbar for device simulation.
+
+![device-toolbar2](https://bear-images.sfo2.cdn.digitaloceanspaces.com/database-1719509820.png)
 
 ## 3. Configure Device Pixel Ratio
 
