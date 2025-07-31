@@ -1,90 +1,64 @@
 ---
-title: "Publish a Logseq Graph to GitHub Pages"
-description: "Step-by-step guide on how to publish your Logseq graph to GitHub Pages."
-date: "2024-07-22"
+title: Publish a Logseq Graph to GitHub Pages
+description: Step-by-step guide to publish your Logseq knowledge graph as a public website using GitHub Pages.
+date: 2024-07-22
+difficulty: Beginner
 compartir: true
 category: Tutorials
 tags: [tutorial]
 ---
 
-> [!note]
-> Logseq is an open-source, Markdown-based knowledge management and note-taking tool that emphasizes bidirectional linking and block-level editing to facilitate non-linear, interconnected thought.
+Logseq is a powerful open-source knowledge management tool that emphasizes bidirectional linking and block-level editing. Sharing your graph publicly can be a great way to showcase your knowledge or collaborate with others.
 
-Step-by-step guide on how to publish your Logseq graph to GitHub Pages. We use the [workflow](https://github.com/semanticdata/logseq-starter-graph/blob/main/.github/workflows/logseq-validate-publish.yml) provided with my [Logseq Starter](https://github.com/semanticdata/logseq-starter-graph) project.
+## What You'll Build/Achieve
 
----
+You'll publish your Logseq graph as a live website accessible to anyone on the internet using GitHub Pages and automated workflows.
 
-## 1. Open the Repository Settings
+## Prerequisites
 
-At the top of the repository, click **Settings**.
+- GitHub account
+- Logseq graph in a GitHub repository
+- Basic familiarity with GitHub interface
 
-![repository settings](https://raw.githubusercontent.com/semanticdata/logseq-starter-graph/main/assets/repository-settings.png)
+## 1. Open Repository Settings
 
-## 2. Navigate to the Pages Section
+Navigate to your repository on GitHub and click the **Settings** tab at the top.
 
-On the left sidebar, click **Pages** under _Code and automation_.
+## 2. Configure GitHub Pages
 
-![source branch](https://raw.githubusercontent.com/semanticdata/logseq-starter-graph/main/assets/source-branch.png)
+In the left sidebar, click **Pages** under the _Code and automation_ section.
 
-## 3. Configure GitHub Pages Source to GitHub Actions
+## 3. Set Build Source
 
-Under the _Build and deployment_ section, under **Source**, change it from **Deploy from a branch** to **GitHub Actions**.
+Under **Build and deployment**, change the **Source** from "Deploy from a branch" to **"GitHub Actions"**. This enables automated publishing whenever you update your graph.
 
-![source actions](https://raw.githubusercontent.com/semanticdata/logseq-starter-graph/main/assets/source-actions.png)
+## 4. Access GitHub Actions
 
-## 4. Navigate to the Actions Section
+Click the **Actions** tab at the top of your repository.
 
-At the top of the repository, click **Actions**.
+## 5. Run the Publishing Workflow
 
-![repository actions](https://raw.githubusercontent.com/semanticdata/logseq-starter-graph/main/assets/repository-actions.png)
+In the left sidebar, click your workflow (e.g., "Validate and Publish Logseq Graph to GitHub Pages"). Click **Run workflow** on the right, then click the blue **Run workflow** button.
 
-## 5. Run the Workflow for the First Time
+## 6. Wait for Completion
 
-On the left sidebar, click the workflow name (**Validate and Publish Logseq Graph to GitHub Pages**).
+The first run takes several minutes (10+ minutes) as it sets up the publishing environment. Subsequent runs will be much faster (1-2 minutes).
 
-![action summary](https://raw.githubusercontent.com/semanticdata/logseq-starter-graph/main/assets/action-summary.png)
+## 7. Set Repository Website URL
 
-On the right, click **Run workflow**, then click on the new **Run workflow** (blue) button.
+Return to your repository's main page and click the ⚙ (gear) icon next to "About". Under **Website**, click "Use your GitHub Pages website" to auto-populate your site URL.
 
-![action runs](https://raw.githubusercontent.com/semanticdata/logseq-starter-graph/main/assets/action-runs.png)
+## Verification
 
-## 6. Be Patient
+You'll know it worked when you can visit your GitHub Pages URL (typically `https://your-username.github.io/repository-name/`) and see your published Logseq graph.
 
-Please be patient.The first time you run the workflow, it will take _several minutes_ to complete. Subsequent runs will be _faster_.
+## Common Issues
 
-Take a look at the first run for my repository:
+**Problem**: Workflow fails on first run  
+**Solution**: Check that your repository contains valid Logseq files and the workflow has proper permissions
 
-![action duration](https://raw.githubusercontent.com/semanticdata/logseq-starter-graph/main/assets/action-duration.png)
+**Problem**: Site shows 404 error  
+**Solution**: Wait a few more minutes after workflow completion - GitHub Pages can take time to propagate
 
-Over 11 minutes!
-
-But as you can see in the next screenshot, the next time you run the workflow, it will be much faster.
-
-![action faster](https://raw.githubusercontent.com/semanticdata/logseq-starter-graph/main/assets/action-faster.png)
-
-Just over 1 minute!
-
-## 7. Use Your GitHub Pages Website Url
-
-Back at the repository landing page, click the ⚙ (Gear) icon to edit the repository details.
-
-![repository sidebar](https://raw.githubusercontent.com/semanticdata/logseq-starter-graph/main/assets/repository-sidebar.png)
-
-Under _Website_, click **Use your GitHub Pages website**.
-
-![repository details](https://raw.githubusercontent.com/semanticdata/logseq-starter-graph/main/assets/repository-details.png)
-
-It will populate the URL field with your own GitHub Pages website address. It should look like `https://your-username.github.io/logseq-starter-graph/`.
-
-![repository url](https://raw.githubusercontent.com/semanticdata/logseq-starter-graph/main/assets/repository-url.png)
-
-> [!note]
-> This is a good time to add a description to your project.
-
-## 8. Save Changes
-
-Save your changes and take a look at your repository details.
-
-![repository details filled](https://raw.githubusercontent.com/semanticdata/logseq-starter-graph/main/assets/repository-details-filled.png)
-
-Enjoy using the Logseq Starter Graph!
+**Problem**: Changes to graph don't appear on website  
+**Solution**: Make sure to push your changes to GitHub and re-run the workflow

@@ -1,31 +1,41 @@
 ---
 title: Add Prettier to Your Node Project
-description: How to add and use Prettier on your Node based project.
+description: Set up automatic code formatting in Node.js projects using Prettier.
 date: 2024-07-01
+difficulty: Beginner
 compartir: true
 category: Tutorials
 tags: [tutorial]
 ---
 
-[Prettier](https://prettier.io/) is an opinionated code formatter that automatically enforces consistent style rules for code, reducing formatting errors and improving readability.
+Maintaining consistent code style across a project can be challenging, especially when working in a team. Enter [Prettier](https://prettier.io/), an opinionated code formatter that automatically formats your code to ensure consistency.
 
-Maintaining consistent code style across a project can be challenging, especially when working in a team. Enter [Prettier](https://prettier.io/), an opinionated code formatter that automatically formats your code to ensure consistency. Let's explore how to add it to our node-based projects.
+## What You'll Build/Achieve
 
-## Installation
+You'll configure Prettier to automatically format your Node.js project code, ensuring consistent style across your entire codebase with simple npm commands.
 
-First, install Prettier locally:
+## Prerequisites
+
+- Node.js installed on your system
+- An existing Node.js project with `package.json`
+
+## 1. Install Prettier
+
+Install Prettier as a development dependency:
 
 ```shell
 npm install --save-dev --save-exact prettier
 ```
 
-Then, create an empty configuration file to let code editors and other tools know you are using Prettier:
+## 2. Create Configuration File
+
+Create an empty configuration file:
 
 ```shell
 node --eval "fs.writeFileSync('.prettierrc','{}\n')"
 ```
 
-Alternatively, if you want an example, here's one I use:
+Or create a custom configuration file:
 
 ```json title=".prettierrc"
 {
@@ -55,9 +65,9 @@ Alternatively, if you want an example, here's one I use:
 }
 ```
 
-Refer to Prettier's documentation on the [Configuration File](https://prettier.io/docs/en/configuration).
+## 3. Create Ignore File
 
-Next, create a `.prettierignore` file to let Prettier CLI and code editors know which files and directories to _not_ format. For example:
+Create a `.prettierignore` file to exclude specific files:
 
 ```plaintext title=".prettierignore"
 build
@@ -65,19 +75,9 @@ public
 package-lock.json
 ```
 
-This example would have Prettier ignore the `build`, the `public` directories, and the `package-lock.json` file.
+## 4. Add NPM Scripts
 
-Now you can format all files with Prettier using:
-
-```shell
-npx prettier . --write
-```
-
-## Adding Scripts to Format the Entire Codebase
-
-We can create scritps inside the `package.json` file to make it easier for us to check and format the entire codebase with a simple npm/pnpm/yarn/bun command.
-
-Inside your `package.json` add the following scripts to check and format the codebase with Prettier.
+Add formatting scripts to your `package.json`:
 
 ```json title="package.json"
 "scripts": {
@@ -86,12 +86,14 @@ Inside your `package.json` add the following scripts to check and format the cod
 }
 ```
 
-And just like that, you can use:
+## Verification
 
-```shell
-# Check for formatting errors
-npm run check
+You'll know it worked when you can run `npm run format` and see your code automatically reformatted according to Prettier's rules.
 
-# Fix formatting errors
-npm run format
-```
+## Common Issues
+
+**Problem**: "Cannot find module 'prettier'" error  
+**Solution**: Make sure you ran the install command in your project directory with `package.json`
+
+**Problem**: Prettier formats files you don't want changed  
+**Solution**: Add those files or directories to your `.prettierignore` file

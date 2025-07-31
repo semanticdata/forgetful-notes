@@ -1,67 +1,60 @@
 ---
-title: "Consistently Take a Website Screenshot"
-description: "How to take consistent, precise screenshots of a website."
-date: "2024-07-29"
+title: Consistently Take a Website Screenshot
+description: How to take consistent, precise screenshots of a website using browser developer tools.
+date: 2024-07-29
+difficulty: Beginner
 compartir: true
 category: Tutorials
 tags: [tutorial]
 ---
 
-Taking a precise screenshot of an HTML element in your browser's Developer Tools can be incredibly useful for web development and design. Follow these steps to capture a node screenshot with a custom Device Pixel Ratio (DPR) and resolution.
+Taking precise screenshots of HTML elements in your browser's Developer Tools can be incredibly useful for web development and design. This technique lets you capture exactly what you need with consistent quality every time.
 
-## Overview
+## What You'll Build/Achieve
 
-1. Press `Ctrl + Shift + I` or `F12` to open the browser developer tools.
-2. Press `Ctrl + Shift + M` to toggle the device toolbar.
-3. Click the dots on top right and select "Add device pixel ratio" or DPR.
-4. Set DPR to `2.0` if not done yet.
-5. Set resolution (e.g. 512x512).
-6. Select the HTML element you'd like to capture within the "elements panel".
-7. Press `Ctrl + Shift + P` to open the run command interface.
-8. Type "node" to show the "Capture node screenshot" and press `Enter`.
-9. Enjoy your screenshot.
+You'll learn how to capture precise, consistent screenshots of HTML elements using your browser's developer tools with custom resolution and pixel density settings.
 
-## Step-by-Step Tutorial
+## Prerequisites
 
-### 1. Open Developer Tools
+- Any modern web browser (Chrome, Edge, Firefox)
+- Basic familiarity with browser developer tools
 
-Press `Ctrl + Shift + I` or `F12` to open the browser developer tools. This can look different depending on what browser you use.
+## 1. Open Developer Tools
 
-Here's what it looks like in Microsoft Edge:
+Press `Ctrl + Shift + I` or `F12` to open the browser developer tools.
 
-![dev-tools-edge](https://bear-images.sfo2.cdn.digitaloceanspaces.com/database-1719509556.png)
+## 2. Toggle Device Toolbar
 
-### 2. Toggle Device Toolbar
+Press `Ctrl + Shift + M` to toggle the Device Toolbar for device simulation.
 
-Press `Ctrl + Shift + M` to toggle the Device Toolbar, allowing you to simulate different devices.
+## 3. Configure Device Pixel Ratio
 
-<!--![device-toolbar](https://bear-images.sfo2.cdn.digitaloceanspaces.com/database-1719509661.png)-->
-![device-toolbar2](https://bear-images.sfo2.cdn.digitaloceanspaces.com/database-1719509820.png)
+Click the three vertical dots in the top right corner of the Developer Tools pane and select **"Add device pixel ratio"** (or **DPR**). Set the DPR to **2.0** for high-quality screenshots.
 
-### 3. Add Device Pixel Ratio (DPR)
+## 4. Set Resolution
 
-Click the three vertical dots in the top right corner of the Developer Tools pane. From the dropdown menu, select **"Add device pixel ratio"** (or **DPR**).
+In the Device Toolbar, set your desired resolution (e.g., 512x512) to configure the viewport size.
 
-### 4. Set Device Pixel Ratio (DPR)
+## 5. Select HTML Element
 
-In the Device Toolbar, set the DPR to **2.0** if it is not already set. This ensures the screenshot captures with the desired pixel density.
+In the Elements panel, navigate to and select the HTML element you want to capture. Usually the `<body>` element works well.
 
-### 5. Set Resolution
+## 6. Open Command Menu
 
-In the Device Toolbar, set the desired resolution. This configures the viewport size for your screenshot.
+Press `Ctrl + Shift + P` (Windows/Linux) or `Cmd + Shift + P` (Mac) to open the Command Menu.
 
-### 6. Select HTML Element
+## 7. Capture Screenshot
 
-In the Elements panel, navigate to and select the HTML element you want to capture. This highlights the specific node for the screenshot. Usually the `<body>` element will work, but it depends on the site you are screenshotting.
+Type "node" in the Command Menu, select **"Capture node screenshot"** from the list, and press `Enter`.
 
-### 7. Open Command Menu
+## Verification
 
-Press `Ctrl + Shift + P` (Windows/Linux) or `Cmd + Shift + P` (Mac) to open the Command Menu in Developer Tools.
+You'll know it worked when the screenshot is automatically saved to your default download location with the specified resolution and pixel density.
 
-### 8. Capture Node Screenshot
+## Common Issues
 
-In the Command Menu, type "node" to filter commands and select **"Capture node screenshot"** from the list. Press `Enter`.
+**Problem**: Screenshot appears blurry or low quality  
+**Solution**: Make sure DPR is set to 2.0 or higher
 
-### 9. Enjoy Your Screenshot
-
-The screenshot of the selected HTML element with the specified DPR and resolution is now saved. You can find it in your default download location.
+**Problem**: Can't find the "Capture node screenshot" option  
+**Solution**: Make sure you have an HTML element selected in the Elements panel first
