@@ -14,7 +14,7 @@ const config: QuartzConfig = {
     analytics: {
       provider: "umami",
       host: "https://umami.itscattime.com/",
-      websiteId: "8bee4a2f-a495-474b-8aad-3066bc5c7f45",
+      websiteId: "c4c9d019-ee43-433d-842b-4b69e66b653f",
     },
     locale: "en-US",
     baseUrl: "forgetfulnotes.com",
