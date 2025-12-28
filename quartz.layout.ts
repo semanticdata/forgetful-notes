@@ -11,6 +11,7 @@ export const sharedPageComponents: SharedLayout = {
       About: "/About",
       Blog: "https://miguelpimentel.do/",
       GitHub: "https://github.com/semanticdata/forgetful-notes/",
+      Links: "https://database.omg.lol/",
       Uses: "/Uses",
     },
   }),
