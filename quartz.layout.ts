@@ -13,6 +13,7 @@ export const sharedPageComponents: SharedLayout = {
       GitHub: "https://github.com/semanticdata/forgetful-notes/",
       Links: "https://database.omg.lol/",
       Uses: "/Uses",
+      Now: "https://database.omg.lol/now/",
     },
   }),
 }

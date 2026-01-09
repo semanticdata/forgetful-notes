@@ -5,7 +5,7 @@ date: 2024-07-22
 difficulty: Beginner
 compartir: true
 category: Tutorials
-tags: [tutorial]
+tags: [tutorial,logseq]
 ---
 
 Logseq is a powerful open-source knowledge management tool that emphasizes bidirectional linking and block-level editing. Sharing your graph publicly can be a great way to showcase your knowledge or collaborate with others.

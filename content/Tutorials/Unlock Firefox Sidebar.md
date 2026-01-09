@@ -5,7 +5,7 @@ date: 2023-06-25
 difficulty: Beginner
 compartir: true
 category: Tutorials
-tags: [tutorial]
+tags: [tutorial,firefox]
 ---
 
 Firefox's sidebar is great for extensions, but the default width restrictions can be frustrating when you want to make better use of that space. This guide will show you how to break free from those limitations.

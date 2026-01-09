@@ -3,9 +3,15 @@ title: Welcome!
 description: Forgetful Notes—A digital garden of knowledge. A platform for my learning and creative endeavours. A space for thinking through, building upon, and coming back to.
 compartir: true
 ---
+Hi, I'm Miguel.
+
+> **Engineering civil infrastructure and digital tools.**
+
+I'm an Engineering Project Manager in Minnesota, focusing on public infrastructure like roads and utilities. I apply that same engineering discipline to software. As a self-taught developer, I build tools to solve practical problems—ranging from Python-based dashboards for traffic analysis to Obsidian plugins and browser extensions that streamline my workflow.
+
 You've come across **Forgetful Notes**—a [[Digital Garden|digital garden]] of knowledge. Come in and make yourself comfortable.
 
-This website serves as a platform for my learning and creative endeavours. A space for thinking through, building upon, and coming back to. It is part of my effort to organize my own theories, concepts, and ideas in a more public setting.
+This website serves as a platform for my learning and creative endeavours. A space for thinking through, building upon, and coming back to. It is part of my effort to organize my own theories, concepts, and ideas in a more public setting.
 
 You will find within a wide range of topics, expanding and exploring ideas across multiple disciplines. In a way, you could say the [[Scope of Work|scope of work]] for the website is not only allowed to, but expected to grow. Forgetful Notes embraces the inherent [[Rhizomatic Learning|rhizomatic learning]] and web-like nature of our thinking. It is a living document designed for an audience of one, myself.
 
@@ -14,11 +20,11 @@ Like me, all notes contained within should be considered work-in-progress. Expec
 - Want to learn more _about me_?  
   Check out the [[About]] page.
 - Want to read more of my material?  
-  Visit my [Blog](https://miguelpimentel.do/).
+  Visit my [Blog](https://miguelpimentel.do/blog/).
 - Want to learn more _about the site_?  
   Review the site's [[Meta]] page.
 
-I leave you with some fun quotes. Feel free to stop by the [[Quotes]].
+I leave you with some fun [[Quotes]]:
 
 > _"The problem with your sink is that I have no idea how to fix it."_
 
